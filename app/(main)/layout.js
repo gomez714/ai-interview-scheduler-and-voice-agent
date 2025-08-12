@@ -7,7 +7,12 @@ function DashboardLayout({ children }) {
       <div>
         <h1>Dashboard</h1>
       </div>
-      <DashboardProvider>{children}</DashboardProvider>
+      <DashboardProvider>
+       <div className="">
+       {children}
+
+       </div>
+        </DashboardProvider>
     </div>
   );
 }
