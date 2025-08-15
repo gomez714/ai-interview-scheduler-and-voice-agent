@@ -16,7 +16,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 
 function InterviewLink({ interviewId, formData, questions = [] }) {
-  const url = `${process.env.NEXT_PUBLIC_HOST_URL}/${interviewId}`;
+  const url = `${process.env.NEXT_PUBLIC_HOST_URL}/interview/${interviewId}`;
 
   const handleCopyLink = async () => {
     await navigator.clipboard.writeText(url);

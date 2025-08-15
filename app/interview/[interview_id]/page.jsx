@@ -15,6 +15,7 @@ function Page() {
   const { interview_id } = useParams();
   const [interviewDetails, setInterviewDetails] = useState(null);
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { interviewInfo, setInterviewInfo } = useContext(InterviewDataContext);
   const router = useRouter();
@@ -51,8 +52,9 @@ function Page() {
 
       if (interviews && interviews.length > 0) {
         setInterviewInfo({
-            username: username,
-            interviewDetails: interviews[0],
+          username: username,
+          email: email,
+          interviewDetails: interviews[0],
         });
         router.push(`/interview/${interview_id}/start`);
       }
@@ -100,25 +102,27 @@ function Page() {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
+        <div className="w-3/4 mt-4">
+          <h2>Enter your email</h2>
+          <Input
+            type="email"
+            placeholder="e.g. johnsmith@gmail.com"
+            className="bg-white"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
         <div className="mt-4 p-3 bg-blue-100 flex gap-4 rounded-lg">
           <Info className="text-blue-700" />
           <div>
             <h2 className="font-semibold">Before you begin:</h2>
             <ul className="list-disc list-inside">
-              <li className="text-sm text-blue-700">
-                Test your microphone and camera
-              </li>
+              <li className="text-sm text-blue-700">Test your microphone</li>
               <li className="text-sm text-blue-700">
                 Make sure you have a stable internet connection
               </li>
               <li className="text-sm text-blue-700">
                 Make sure you have a quiet environment
-              </li>
-              <li className="text-sm text-blue-700">
-                Make sure you have a good lighting
-              </li>
-              <li className="text-sm text-blue-700">
-                Make sure you have a good background
               </li>
             </ul>
           </div>

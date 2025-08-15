@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import { QUESTION_PROMPT } from "@/constants/Prompts";
 import { NextResponse } from "next/server";
+import openai from "@/lib/openai";
 
 export async function POST(req) {
   const { jobPosition, jobDescription, duration, type } = await req.json();
@@ -10,13 +11,8 @@ export async function POST(req) {
     .replace("{{duration}}", duration)
     .replace("{{type}}", type);
   try {
-    const openai = new OpenAI({
-      baseURL: "https://openrouter.ai/api/v1",
-      apiKey: process.env.OPENROUTER_API_KEY,
-    });
-
     const completion = await openai.chat.completions.create({
-      model: "deepseek/deepseek-chat-v3-0324:free",
+      model: "gpt-4o-mini",
       messages: [
         {
           role: "user",

@@ -1,18 +1,24 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { Loader2Icon } from "lucide-react";
 import QuestionListContainer from "./QuestionListContainer";
-import  supabase  from "@/services/supabaseClient";
+import supabase from "@/services/supabaseClient";
 import { useUser } from "@/app/provider";
 import { v4 as uuidv4 } from "uuid";
+
 function QuestionList({ formData, onCreateInterviewLink }) {
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState([]);
   const { user } = useUser();
   const [saveLoading, setSaveLoading] = useState(false);
+  
+  
+  // Add refs to track if API call has been made
+  const hasGeneratedRef = useRef(false);
+  const lastFormDataRef = useRef(null);
 
   // Robustly parse the model output (handles raw JSON or ```json fenced blocks)
   function parsePlanFromContent(content) {
@@ -36,8 +42,17 @@ function QuestionList({ formData, onCreateInterviewLink }) {
   }
 
   const generateQuestionList = async () => {
+    // Prevent duplicate calls
+    if (hasGeneratedRef.current) {
+      console.log("API call already made, skipping...");
+      return;
+    }
+    
     setLoading(true);
+    hasGeneratedRef.current = true;
+    
     try {
+      console.log("Making API call to generate questions...");
       const response = await axios.post("/api/ai-model", formData);
       const plan = parsePlanFromContent(response.data.content);
       if (!plan || !Array.isArray(plan.interviewQuestions)) {
@@ -48,6 +63,7 @@ function QuestionList({ formData, onCreateInterviewLink }) {
       console.error(error);
       toast.error("Server Error, Try again later");
       setQuestions([]);
+      hasGeneratedRef.current = false; // Reset on error to allow retry
     } finally {
       setLoading(false);
     }
@@ -80,8 +96,28 @@ function QuestionList({ formData, onCreateInterviewLink }) {
   };
 
   useEffect(() => {
-    if (formData) generateQuestionList();
-  }, [JSON.stringify(formData)]); // re-run when formData meaningfully changes
+    if (formData && !hasGeneratedRef.current) {
+      // Store current formData for comparison
+      lastFormDataRef.current = formData;
+      generateQuestionList();
+    }
+  }, []); // Empty dependency array - only run once
+
+  // Separate effect to handle formData changes (if needed)
+  useEffect(() => {
+    if (formData && hasGeneratedRef.current) {
+      // Check if formData actually changed significantly
+      const currentFormDataString = JSON.stringify(formData);
+      const lastFormDataString = JSON.stringify(lastFormDataRef.current);
+      
+      if (currentFormDataString !== lastFormDataString) {
+        console.log("FormData changed, regenerating questions...");
+        hasGeneratedRef.current = false;
+        lastFormDataRef.current = formData;
+        generateQuestionList();
+      }
+    }
+  }, [formData?.jobPosition, formData?.jobDescription, formData?.duration, formData?.type]); // Specific fields
 
   return (
     <div>

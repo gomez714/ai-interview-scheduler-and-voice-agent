@@ -1,16 +1,18 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Video, Plus } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "@/app/provider";
 import supabase from "@/services/supabaseClient";
-import InterviewCard from "./InterviewCard";
+import { Video } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import InterviewCard from "../dashboard/_components/InterviewCard";
+import { Plus } from "lucide-react";
 
-function LatestInterviewsList() {
+function AllInterviewPage() {
   const [interviewList, setInterviewList] = useState([]);
   const { user } = useUser();
 
   useEffect(() => {
+    console.log(user);
     if (user?.email) {
       getInterviews();
     }
@@ -22,21 +24,21 @@ function LatestInterviewsList() {
         .from("interviews")
         .select("*")
         .eq("userEmail", user?.email)
-        .order("created_at", { ascending: false })
-        .limit(8);
+        .order("created_at", { ascending: false });
       if (error) {
         console.error("Error fetching interviews:", error);
+      } else {
+        setInterviewList(data);
       }
-      setInterviewList(data);
-    } catch (networkError) {
-      console.error("Network error:", networkError);
+    } catch (error) {
+      console.error("Error fetching interviews:", error);
     }
   };
 
   return (
     <div>
       <div className="my-5">
-        <h2 className="font-bold text-2xl">Previously Created Interviews</h2>
+        <h2 className="font-bold text-2xl">All Previously Created Interviews</h2>
 
         {interviewList?.length === 0 && (
           <div className="p-5 flex flex-col items-center gap-3 mt-5">
@@ -61,4 +63,4 @@ function LatestInterviewsList() {
   );
 }
 
-export default LatestInterviewsList;
+export default AllInterviewPage;
