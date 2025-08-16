@@ -67,6 +67,7 @@ Scoring rubric (use integers 1–10; compute from evidence):
 - problemSolving: decomposition, reasoning steps, handling constraints (0–3 each → 0–9)
 - experience: relevance to role, impact/ownership, scope (0–3 each → 0–9)
 - leadership: ability to lead, influence, and inspire (0–3 each → 0–9)
+- overall: overall score (0–3 each → 0–9)
 
 **Map points (0–9) → rating (1–10):**
 0–1→3, 2→4, 3→5, 4→6, 5→7, 6→8, 7→9, 8–9→10.  
@@ -85,18 +86,20 @@ Return JSON only:
       "communication": <int>,
       "problemSolving": <int>,
       "experience": <int>,
-      "leadership": <int>
+      "leadership": <int>,
+      "overall": <int>
     },
     "reasons": {
       "technicalSkills": "<short reason>",
       "communication": "<short reason>",
       "problemSolving": "<short reason>",
       "experience": "<short reason>",
-      "leadership": "<short reason>"
+      "leadership": "<short reason>",
+      
     },
-    "summary": "<<=3 sentences>",
-    "Recommendation": "Yes" | "No",
-    "RecommendationMsg": "<one line>"
+    "summary": "<<=8 sentences>>",
+    "recommendation": "Yes" | "No",
+    "recommendationMsg": "<<=3 sentences>>"
   }
 }
 `;
