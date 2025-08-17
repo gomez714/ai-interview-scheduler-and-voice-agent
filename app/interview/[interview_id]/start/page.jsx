@@ -14,6 +14,26 @@ function StartInterviewPage() {
   const { interviewInfo } = useContext(InterviewDataContext);
   const router = useRouter();
 
+  // Check if interview data is available
+  React.useEffect(() => {
+    if (!interviewInfo || !interviewInfo.interviewDetails) {
+      // No interview data - redirect to error page
+      router.push('/interview/error?type=not-found');
+    }
+  }, [interviewInfo, router]);
+
+  // Don't render if no interview data
+  if (!interviewInfo || !interviewInfo.interviewDetails) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="text-muted-foreground">Loading interview...</p>
+        </div>
+      </div>
+    );
+  }
+
   // Use the custom timer hook
   const { callDuration, startTimer, stopTimer, formatDuration, cleanup } =
     useCallTimer(interviewInfo);

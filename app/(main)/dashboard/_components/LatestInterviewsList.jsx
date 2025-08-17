@@ -2,39 +2,71 @@
 import { Button } from "@/components/ui/button";
 import { Video, Plus } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import { useUser } from "@/app/provider";
+import { useUser } from "../../AuthProvider";
 import supabase from "@/services/supabaseClient";
 import InterviewCard from "./InterviewCard";
 import InterviewCardSkeleton from "@/components/ui/InterviewCardSkeleton";
 
 function LatestInterviewsList() {
   const [interviewList, setInterviewList] = useState([]);
-  const { user } = useUser();
+  const { user, authChecked } = useUser();
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(true);
+
+  // Component mount/unmount tracking
+  useEffect(() => {
+    setMounted(true);
+    return () => {
+      setMounted(false);
+    };
+  }, []);
 
   useEffect(() => {
-    
-    if (user?.email ) {
-      getInterviews();
+    if (authChecked) {
+      if (user?.email) {
+        getInterviews();
+      } else {
+        // No user email - clear list and stop loading
+        setInterviewList([]);
+        setLoading(false);
+      }
     }
-  }, [user]);
+    // If authChecked is false, keep loading state
+  }, [user?.email, authChecked]);
 
   const getInterviews = async () => {
+    if (!user?.email) {
+      if (mounted) setLoading(false);
+      return;
+    }
+    
     try {
+      if (mounted) setLoading(true);
+      
       const { data, error } = await supabase
         .from("interviews")
         .select("*")
-        .eq("userEmail", user?.email)
+        .eq("userEmail", user.email)
         .order("created_at", { ascending: false })
         .limit(6);
+        
+      // Check if component is still mounted before updating state
+      if (!mounted) return;
+        
       if (error) {
         console.error("Error fetching interviews:", error);
+        setInterviewList([]);
+      } else {
+        setInterviewList(data || []);
       }
-      setInterviewList(data);
     } catch (networkError) {
+      if (!mounted) return;
       console.error("Network error:", networkError);
+      setInterviewList([]);
     } finally {
-      setLoading(false);
+      if (mounted) {
+        setLoading(false);
+      }
     }
   };
 

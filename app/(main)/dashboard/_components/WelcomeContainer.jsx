@@ -1,5 +1,5 @@
 "use client";
-import { useUser } from "@/app/provider";
+import { useUser } from "../../AuthProvider";
 import Image from "next/image";
 import React, { useState } from "react";
 import { Sparkles, Users, Clock } from "lucide-react";

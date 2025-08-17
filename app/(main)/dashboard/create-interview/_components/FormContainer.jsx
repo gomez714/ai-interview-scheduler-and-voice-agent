@@ -39,7 +39,7 @@ function FormContainer({ onHandleInputChange, goToNextStep }) {
       <div className="mt-5">
         <h2 className="text-sm font-medium">Job Description</h2>
         <Textarea
-          placeholder="Enter details from Job description"
+          placeholder="Enter or Paste details from Job description"
           className="h-[200px] bg-white mt-2"
           onChange={(e) =>
             onHandleInputChange("jobDescription", e.target.value)

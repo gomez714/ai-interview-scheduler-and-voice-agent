@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useUser } from "@/app/provider";
+import { useUser } from "../AuthProvider";
 import { CreditCard, Plus, Star, Crown, Building2, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PayDialog from "./_components/PayDialog";
@@ -109,7 +109,7 @@ function BillingPage() {
                   <p className="text-xs text-muted-foreground mt-1">Volume discounts available</p>
                 </div>
                 <Button variant="secondary" className="w-full">
-                  Contact Sales
+                  Contact Us
                 </Button>
               </div>
             </div>

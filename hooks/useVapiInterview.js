@@ -131,7 +131,6 @@ export const useVapiInterview = (interviewInfo, onFeedbackGeneration, timerContr
 
   // Event handlers
   const handleCallStart = useCallback(() => {
-    console.log("Call started");
     setIsCallActive(true);
     setIsConnecting(false);
     
@@ -144,7 +143,6 @@ export const useVapiInterview = (interviewInfo, onFeedbackGeneration, timerContr
   }, [startTimer]);
 
   const handleCallEnd = useCallback(async () => {
-    console.log("Call ended - from VAPI event");
     setIsCallActive(false);
     setIsConnecting(false);
     setAssistantIsSpeaking(false);
@@ -153,7 +151,6 @@ export const useVapiInterview = (interviewInfo, onFeedbackGeneration, timerContr
     toast.info("Interview completed - Thank you!");
     
     if (latestConversationRef.current && latestConversationRef.current.length > 0) {
-      console.log("Generating feedback with conversation:", latestConversationRef.current);
       await onFeedbackGeneration(latestConversationRef.current);
     } else {
       console.warn("No conversation data available for feedback");
@@ -161,22 +158,18 @@ export const useVapiInterview = (interviewInfo, onFeedbackGeneration, timerContr
   }, [stopTimer, onFeedbackGeneration]);
 
   const handleSpeechStart = useCallback(() => {
-    console.log("User started speaking");
   }, []);
 
   const handleSpeechEnd = useCallback(() => {
-    console.log("User stopped speaking");
   }, []);
 
   const handleMessage = useCallback((message) => {
-    console.log("Message received:", message);
 
     // Update conversation history state
     if (message.type === "conversation-update") {
       setConversationHistory((prev) => [...prev, message]);
       // Update the ref instead of local variable
       latestConversationRef.current = message.conversation || [];
-      console.log("Updated latest conversation:", latestConversationRef.current);
     }
 
     if (message.type === "assistant-speech-started") {
@@ -192,7 +185,6 @@ export const useVapiInterview = (interviewInfo, onFeedbackGeneration, timerContr
       if (message.status === "ended") {
         if (message.endedReason === "exceeded-max-duration") {
           toast.info("Interview completed - Time limit reached");
-          console.log("Interview ended due to time limit");
         } else {
           toast.info(`Interview ended: ${message.endedReason}`);
         }
@@ -202,7 +194,6 @@ export const useVapiInterview = (interviewInfo, onFeedbackGeneration, timerContr
     // Handle transcript messages for better UX
     if (message.type === "transcript") {
       if (message.role === "user" && message.transcriptType === "final") {
-        console.log("User said:", message.transcript);
         // You could store these for interview records
       }
     }
@@ -229,7 +220,6 @@ export const useVapiInterview = (interviewInfo, onFeedbackGeneration, timerContr
 
     // Cleanup listeners
     return () => {
-      console.log("Cleaning up VAPI event listeners");
       vapi.off("call-start", handleCallStart);
       vapi.off("call-end", handleCallEnd);
       vapi.off("speech-start", handleSpeechStart);
@@ -270,7 +260,6 @@ export const useVapiInterview = (interviewInfo, onFeedbackGeneration, timerContr
       const maxDuration = interviewInfo.interviewDetails.duration * 60 * 1000;
       setTimeout(() => {
         if (isCallActive) {
-          console.log("Interview time limit reached, ending call");
           endInterview();
           toast.info("Interview time limit reached");
         }

@@ -111,16 +111,7 @@ function InterviewCompletedPage() {
             scheduled this interview.
           </p>
         </div>
-
-        {/* Action Button */}
-        <Button
-          onClick={handleBackToDashboard}
-          className="w-full max-w-md font-medium"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Dashboard
-        </Button>
-
+        
         {/* Footer Message */}
         <p className="text-xs text-gray-500 text-center mt-6 max-w-md">
           Your interview session has been securely saved. No further action is

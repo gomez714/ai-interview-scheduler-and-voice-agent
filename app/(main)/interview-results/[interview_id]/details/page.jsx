@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import supabase from "@/services/supabaseClient";
-import { useUser } from "@/app/provider";
+import { useUser } from "../../../AuthProvider";
 import InterviewDetailsContainer from "./_components/InterviewDetailsContainer";
 import CandidatesList from "./_components/CandidatesList";
 function InterviewDetailsPage() {
@@ -19,7 +19,6 @@ function InterviewDetailsPage() {
       .eq("interview_id", interview_id);
 
     if (error) {
-      console.log(error);
     }
     setInterviewDetails(data[0]);
   };

@@ -19,7 +19,7 @@ import { Plus, Sparkles } from "lucide-react";
 import { SidebarOptions } from "@/constants/SidebarOptions";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useUser } from "@/app/provider";
+import { useUser } from "../AuthProvider";
 
 export default function AppSidebar() {
   const pathname = usePathname();

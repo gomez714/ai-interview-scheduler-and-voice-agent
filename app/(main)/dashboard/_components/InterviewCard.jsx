@@ -135,7 +135,7 @@ function InterviewCard({ interview, viewDetails = false }) {
             variant="outline"
             size="sm"
             className="w-full h-9 flex items-center justify-center gap-2"
-            onClick={() => router.push(`/scheduled-interviews/${interview?.interview_id}/details`)}
+            onClick={() => router.push(`/interview-results/${interview?.interview_id}/details`)}
           >
             View Details
             <ArrowRight className="h-4 w-4" />

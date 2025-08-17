@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import supabase from "@/services/supabaseClient";
-import { useUser } from "@/app/provider";
+import { useUser } from "../AuthProvider";
 import { Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
@@ -9,18 +9,24 @@ import InterviewCard from "../dashboard/_components/InterviewCard";
 import InterviewCardSkeleton from "@/components/ui/InterviewCardSkeleton";
 
 function ScheduledInterviewsPage() {
-  const { user } = useUser();
+  const { user, authChecked } = useUser();
   const [interviewList, setInterviewList] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const getInterviewList = async () => {
+    if (!user?.email) {
+      setLoading(false);
+      return;
+    }
+    
     try {
+      setLoading(true);
       const results = await supabase
         .from("interviews")
         .select(
           "jobPosition, duration, interview_id, interview_feedback(user_email)"
         )
-        .eq("userEmail", user?.email)
+        .eq("userEmail", user.email)
         .order("created_at", { ascending: false });
       setInterviewList(results.data || []);
     } catch (error) {
@@ -32,10 +38,17 @@ function ScheduledInterviewsPage() {
   };
   
   useEffect(() => {
-    if (user?.email) {
-      getInterviewList();
+    if (authChecked) {
+      if (user?.email) {
+        getInterviewList();
+      } else {
+        // No user email - clear list and stop loading
+        setInterviewList([]);
+        setLoading(false);
+      }
     }
-  }, [user]);
+    // If authChecked is false, keep loading state
+  }, [user?.email, authChecked]);
   return (
     <div className="mt-5">
       <h2 className="font-bold text-xl">

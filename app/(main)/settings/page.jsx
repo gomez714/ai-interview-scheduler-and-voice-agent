@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { useUser } from '@/app/provider';
+import { useUser } from '../AuthProvider';
 import { Button } from '@/components/ui/button';
 import { LogOut, User } from 'lucide-react';
 import supabase from '@/services/supabaseClient';

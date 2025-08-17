@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "AI Interview Schedule Voice Agent",
-  description: "AI interview scheduler with voice agent",
+  title: "RoleCall",
+  description: "AI Interview Scheduler",
 };
 
 export default function RootLayout({ children }) {

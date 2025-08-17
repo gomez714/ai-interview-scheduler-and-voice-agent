@@ -22,7 +22,6 @@ function CandidateFeedbackDialog({ candidate }) {
     })
     return total / Object.values(rating).length;
   }
-  console.log(feedback);
 
   return (
     <Dialog>

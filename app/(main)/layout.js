@@ -1,17 +1,16 @@
 import React from "react";
 import DashboardProvider from "./provider";
+import AuthProvider from "./AuthProvider";
 
 function DashboardLayout({ children }) {
   return (
-    <div>
-      
+    <AuthProvider>
       <DashboardProvider>
-       <div className="">
-       {children}
-
-       </div>
-        </DashboardProvider>
-    </div>
+        <div className="">
+          {children}
+        </div>
+      </DashboardProvider>
+    </AuthProvider>
   );
 }
 

@@ -8,23 +8,18 @@ export const useCallTimer = (interviewInfo) => {
 
   // Start the call timer
   const startTimer = useCallback(() => {
-    console.log("startTimer called");
-    console.log("startTimeRef.current:", startTimeRef.current);
     
     // Clear any existing timer first
     if (callTimerRef.current) {
-      console.log("Clearing existing timer");
       clearInterval(callTimerRef.current);
     }
     
     // Set the start time
     startTimeRef.current = Date.now();
-    console.log("startTimeRef.current set to:", startTimeRef.current);
     
     callTimerRef.current = setInterval(() => {
       if (startTimeRef.current) {
         const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
-        console.log("Timer tick - elapsed seconds:", elapsed);
         setCallDuration(elapsed);
 
         // Get interview duration in seconds
@@ -43,23 +38,18 @@ export const useCallTimer = (interviewInfo) => {
           toast.warning("Interview ending soon - prepare for final thoughts");
         }
       } else {
-        console.log("Timer tick - startTimeRef.current is null");
       }
     }, 1000);
     
-    console.log("Timer interval set with ID:", callTimerRef.current);
   }, [interviewInfo]);
 
   // Stop the call timer
   const stopTimer = useCallback(() => {
-    console.log("stopTimer called");
     
     if (callTimerRef.current) {
-      console.log("Clearing timer with ID:", callTimerRef.current);
       clearInterval(callTimerRef.current);
       callTimerRef.current = null;
     } else {
-      console.log("No timer to clear");
     }
     
     // Reset start time and duration
@@ -80,7 +70,6 @@ export const useCallTimer = (interviewInfo) => {
   // Cleanup function to be called on unmount
   const cleanup = useCallback(() => {
     if (callTimerRef.current) {
-      console.log("useCallTimer cleanup - clearing timer");
       clearInterval(callTimerRef.current);
       callTimerRef.current = null;
     }

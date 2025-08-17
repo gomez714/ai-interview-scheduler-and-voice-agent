@@ -3,7 +3,6 @@ import supabase from "@/services/supabaseClient";
 
 class FeedbackService {
   static async generateAndSaveFeedback(conversationData, interviewInfo, router) {
-    console.log("Generating feedback for conversation:", conversationData);
     
     // Validate conversation data before sending
     if (!conversationData || conversationData.length === 0) {
@@ -39,7 +38,6 @@ class FeedbackService {
         conversation: conversationData,
       });
       
-      console.log("Feedback API response:", response?.data);
       const feedbackContent = response?.data?.content;
       
       if (!feedbackContent) {
@@ -75,7 +73,6 @@ class FeedbackService {
 
   static async saveFeedbackToDatabase(feedback, interviewInfo) {
     try {
-      console.log("Saving feedback to database...", feedback);
       
       // Get the interview ID from context (more reliable than URL parsing)
       const interviewId = interviewInfo?.interviewDetails?.interview_id;
@@ -101,7 +98,6 @@ class FeedbackService {
         recommended: recommendation // Note: keeping your table's spelling
       };
 
-      console.log("Inserting feedback record:", feedbackRecord);
 
       // Insert into interview_feedback table
       const { data, error } = await supabase
@@ -114,7 +110,6 @@ class FeedbackService {
         throw new Error(`Database error: ${error.message}`);
       }
 
-      console.log("Feedback saved successfully:", data);
       
       return data;
       

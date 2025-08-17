@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { Loader2Icon } from "lucide-react";
 import QuestionListContainer from "./QuestionListContainer";
 import supabase from "@/services/supabaseClient";
-import { useUser } from "@/app/provider";
+import { useUser } from "../../../AuthProvider";
 import { v4 as uuidv4 } from "uuid";
 
 function QuestionList({ formData, onCreateInterviewLink }) {
@@ -44,7 +44,6 @@ function QuestionList({ formData, onCreateInterviewLink }) {
   const generateQuestionList = async () => {
     // Prevent duplicate calls
     if (hasGeneratedRef.current) {
-      console.log("API call already made, skipping...");
       return;
     }
     
@@ -52,7 +51,6 @@ function QuestionList({ formData, onCreateInterviewLink }) {
     hasGeneratedRef.current = true;
     
     try {
-      console.log("Making API call to generate questions...");
       const response = await axios.post("/api/ai-model", formData);
       const plan = parsePlanFromContent(response.data.content);
       if (!plan || !Array.isArray(plan.interviewQuestions)) {
@@ -92,7 +90,6 @@ function QuestionList({ formData, onCreateInterviewLink }) {
       .select();
 
       onCreateInterviewLink(interview_id, questions)
-    console.log(data, error);
     } catch (error) {
       console.error(error);
       toast.error("Error creating interview");
@@ -118,7 +115,6 @@ function QuestionList({ formData, onCreateInterviewLink }) {
       const lastFormDataString = JSON.stringify(lastFormDataRef.current);
       
       if (currentFormDataString !== lastFormDataString) {
-        console.log("FormData changed, regenerating questions...");
         hasGeneratedRef.current = false;
         lastFormDataRef.current = formData;
         generateQuestionList();

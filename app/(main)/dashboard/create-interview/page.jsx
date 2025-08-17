@@ -8,7 +8,7 @@ import FormContainer from "./_components/FormContainer";
 import QuestionList from "./_components/QuestionList";
 import { toast } from "sonner";
 import InterviewLink from "./_components/InterviewLink";
-import {useUser} from '@/app/provider'
+import {useUser} from '../../AuthProvider'
 function CreateInterviewPage() {
   const router = useRouter();
   const [step, setStep] = useState(1);

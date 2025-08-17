@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useUser } from "@/app/provider";
+import { useUser } from "../AuthProvider";
 import supabase from "@/services/supabaseClient";
 import { Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,22 +10,34 @@ import { Plus } from "lucide-react";
 
 function AllInterviewPage() {
   const [interviewList, setInterviewList] = useState([]);
-  const { user } = useUser();
+  const { user, authChecked } = useUser();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(user);
-    if (user?.email) {
-      getInterviews();
+    if (authChecked) {
+      if (user?.email) {
+        getInterviews();
+      } else {
+        // No user email - clear list and stop loading
+        setInterviewList([]);
+        setLoading(false);
+      }
     }
-  }, [user]);
+    // If authChecked is false, keep loading state
+  }, [user?.email, authChecked]);
 
   const getInterviews = async () => {
+    if (!user?.email) {
+      setLoading(false);
+      return;
+    }
+    
     try {
+      setLoading(true);
       const { data, error } = await supabase
         .from("interviews")
         .select("*")
-        .eq("userEmail", user?.email)
+        .eq("userEmail", user.email)
         .order("created_at", { ascending: false });
       if (error) {
         console.error("Error fetching interviews:", error);
