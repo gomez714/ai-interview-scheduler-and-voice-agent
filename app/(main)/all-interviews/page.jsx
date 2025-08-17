@@ -5,11 +5,13 @@ import supabase from "@/services/supabaseClient";
 import { Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import InterviewCard from "../dashboard/_components/InterviewCard";
+import InterviewCardSkeleton from "@/components/ui/InterviewCardSkeleton";
 import { Plus } from "lucide-react";
 
 function AllInterviewPage() {
   const [interviewList, setInterviewList] = useState([]);
   const { user } = useUser();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     console.log(user);
@@ -27,11 +29,15 @@ function AllInterviewPage() {
         .order("created_at", { ascending: false });
       if (error) {
         console.error("Error fetching interviews:", error);
+        setInterviewList([]);
       } else {
-        setInterviewList(data);
+        setInterviewList(data || []);
       }
     } catch (error) {
       console.error("Error fetching interviews:", error);
+      setInterviewList([]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -40,19 +46,37 @@ function AllInterviewPage() {
       <div className="my-5">
         <h2 className="font-bold text-2xl">All Previously Created Interviews</h2>
 
-        {interviewList?.length === 0 && (
-          <div className="p-5 flex flex-col items-center gap-3 mt-5">
-            <Video className="h-12 w-12 p-2 text-primary bg-blue-100 rounded-lg" />
-            <h2 className="font-bold">No Interviews Created Yet</h2>
-            <Button>
-              <Plus />
+        {/* Loading State */}
+        {loading && (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mt-5">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <InterviewCardSkeleton key={index} />
+            ))}
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!loading && interviewList?.length === 0 && (
+          <div className="bg-secondary border border-border rounded-xl p-8 flex flex-col items-center gap-4 mt-5">
+            <div className="p-3 bg-background border border-border rounded-lg">
+              <Video className="h-8 w-8 text-primary" />
+            </div>
+            <div className="text-center space-y-2">
+              <h3 className="text-lg font-semibold text-foreground">No Interviews Created Yet</h3>
+              <p className="text-muted-foreground text-sm">
+                Start creating AI-powered interviews to streamline your hiring process
+              </p>
+            </div>
+            <Button className="mt-2">
+              <Plus className="h-4 w-4 mr-2" />
               Create New Interview
             </Button>
           </div>
         )}
 
-        {interviewList?.length > 0 && (
-          <div className="grid grid-cols-2 xl:grid-cols-3 gap-5 mt-5">
+        {/* Interviews Grid */}
+        {!loading && interviewList?.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mt-5">
             {interviewList.map((interview) => (
               <InterviewCard key={interview.id} interview={interview} />
             ))}

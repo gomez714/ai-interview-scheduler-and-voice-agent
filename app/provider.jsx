@@ -3,6 +3,7 @@
 import supabase from "@/services/supabaseClient";
 import { useEffect, useState, useContext } from "react";
 import { UserDetailContext } from "@/context/UserDetailContext";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 function Provider({ children }) {
   const [user, setUser] = useState(null);
@@ -32,9 +33,11 @@ function Provider({ children }) {
     });
   };
   return (
-    <UserDetailContext.Provider value={{ user, setUser }}>
-      {children}
-    </UserDetailContext.Provider>
+    <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID }}>
+      <UserDetailContext.Provider value={{ user, setUser }}>
+        {children}
+      </UserDetailContext.Provider>
+    </PayPalScriptProvider>
   );
 }
 

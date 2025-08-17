@@ -8,19 +8,25 @@ import FormContainer from "./_components/FormContainer";
 import QuestionList from "./_components/QuestionList";
 import { toast } from "sonner";
 import InterviewLink from "./_components/InterviewLink";
-
+import {useUser} from '@/app/provider'
 function CreateInterviewPage() {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState();
   const [interviewId, setInterviewId] = useState(null);
   const [questions, setQuestions] = useState([]);
+  const user = useUser();
 
   const onHandleInputChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const onGoToNextStep = () => {
+    if(user?.credits <= 0){
+      toast.error("You have no credits left");
+      return;
+    }
+
     if (
       formData?.jobPosition === "" ||
       formData?.jobDescription === "" ||

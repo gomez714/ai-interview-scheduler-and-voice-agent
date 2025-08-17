@@ -84,6 +84,13 @@ function QuestionList({ formData, onCreateInterviewLink }) {
         },
       ])
       .select();
+
+      const userUpdate = await supabase
+      .from("users")
+      .update({credits: user?.credits - 1})
+      .eq("email", user?.email)
+      .select();
+
       onCreateInterviewLink(interview_id, questions)
     console.log(data, error);
     } catch (error) {
