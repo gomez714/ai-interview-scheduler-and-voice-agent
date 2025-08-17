@@ -230,7 +230,7 @@ export const useVapiInterview = (interviewInfo, onFeedbackGeneration, timerContr
       // Cleanup timer on component unmount
       timerCleanup();
     };
-  }, [vapi, handleCallStart, handleCallEnd, handleSpeechStart, handleSpeechEnd, handleMessage, handleError, timerCleanup]);
+  }, [vapi, handleCallStart, handleCallEnd, handleSpeechStart, handleSpeechEnd, handleMessage, handleError]); // Remove timerCleanup from dependencies
 
   // Interview control functions
   const startInterview = useCallback(async () => {

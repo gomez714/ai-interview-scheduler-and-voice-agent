@@ -6,11 +6,11 @@ import React, { useContext } from "react";
 import aiInterviewer from "@/public/woman-ai-interviewer.png";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { useCallTimer } from "@/hooks/useCallTimer";
+import { useGlobalTimer } from "@/hooks/useGlobalTimer";
 import { useVapiInterview } from "@/hooks/useVapiInterview";
 import FeedbackService from "@/utils/feedbackService";
 
-function StartInterviewPage() {
+const StartInterviewPage = React.memo(function StartInterviewPage() {
   const { interviewInfo } = useContext(InterviewDataContext);
   const router = useRouter();
 
@@ -34,9 +34,24 @@ function StartInterviewPage() {
     );
   }
 
-  // Use the custom timer hook
+  // Use the global timer hook
   const { callDuration, startTimer, stopTimer, formatDuration, cleanup } =
-    useCallTimer(interviewInfo);
+    useGlobalTimer();
+  
+  // Debug timer state
+  
+  // Add useEffect to trace re-renders
+  React.useEffect(() => {
+    console.log('📊 START PAGE: useEffect triggered - component re-rendered');
+  });
+
+  // Only cleanup when component actually unmounts (not on re-renders)
+  React.useEffect(() => {
+    return () => {
+      console.log('📊 START PAGE: FINAL UNMOUNT - calling cleanup');
+      cleanup();
+    };
+  }, []); // Empty dependency array - only run on final unmount
 
   // Handle feedback generation using the service
   const handleFeedbackGeneration = async (conversationData) => {
@@ -59,6 +74,13 @@ function StartInterviewPage() {
     }
   };
 
+  // Memoize timer controls to prevent re-creation
+  const timerControls = React.useMemo(() => ({
+    startTimer: () => startTimer(interviewInfo),
+    stopTimer,
+    cleanup: () => {}, // Empty cleanup - let the timer manager handle its own lifecycle
+  }), [startTimer, stopTimer, interviewInfo]);
+
   // Use the VAPI interview hook
   const {
     isCallActive,
@@ -70,12 +92,9 @@ function StartInterviewPage() {
     startInterview,
     endInterview,
     toggleMute,
-  } = useVapiInterview(interviewInfo, handleFeedbackGeneration, {
-    startTimer,
-    stopTimer,
-    cleanup,
-  });
-
+  } = useVapiInterview(interviewInfo, handleFeedbackGeneration, timerControls);
+  
+  
   return (
     <div className="p-20 lg:px-48 xl:px-56">
       <h2 className="font-bold text-xl flex justify-between">
@@ -204,6 +223,6 @@ function StartInterviewPage() {
       </h2>
     </div>
   );
-}
+});
 
 export default StartInterviewPage;

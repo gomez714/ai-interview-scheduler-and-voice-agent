@@ -1,13 +1,19 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import InterviewHeader from './_components/InterviewHeader'
 import { InterviewDataContext } from '@/context/InterviewDataContext'
 
 function InterviewLayout({ children }) {
     const [interviewInfo, setInterviewInfo] = useState(null);
 
+    // Memoize the context value to prevent unnecessary re-renders
+    const contextValue = useMemo(() => ({
+        interviewInfo,
+        setInterviewInfo
+    }), [interviewInfo]);
+
   return (
-    <InterviewDataContext.Provider value={{ interviewInfo, setInterviewInfo }}>
+    <InterviewDataContext.Provider value={contextValue}>
         <div>
             <InterviewHeader />
             {children}

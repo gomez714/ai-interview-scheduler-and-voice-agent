@@ -1,34 +1,38 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { toast } from "sonner";
 
 export const useCallTimer = (interviewInfo) => {
   const [callDuration, setCallDuration] = useState(0);
   const callTimerRef = useRef(null);
   const startTimeRef = useRef(null);
+  const isActiveRef = useRef(false); // Track if timer is active to prevent multiple instances
 
   // Start the call timer
   const startTimer = useCallback(() => {
+    
+    // Don't start if already active
+    if (isActiveRef.current && callTimerRef.current) {
+      return;
+    }
     
     // Clear any existing timer first
     if (callTimerRef.current) {
       clearInterval(callTimerRef.current);
     }
     
-    // Set the start time
+    // Set the start time and mark as active
     startTimeRef.current = Date.now();
+    isActiveRef.current = true;
+    
+    // Get interview duration once and store it
+    const maxDurationSeconds = (interviewInfo?.interviewDetails?.duration || 30) * 60;
+    const warningTime = Math.floor(maxDurationSeconds * 0.8);
+    const finalWarningTime = Math.floor(maxDurationSeconds * 0.9);
     
     callTimerRef.current = setInterval(() => {
-      if (startTimeRef.current) {
+      if (startTimeRef.current && isActiveRef.current) {
         const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
         setCallDuration(elapsed);
-
-        // Get interview duration in seconds
-        const maxDurationSeconds =
-          (interviewInfo?.interviewDetails?.duration || 30) * 60;
-
-        // Warning at 80% of time
-        const warningTime = Math.floor(maxDurationSeconds * 0.8);
-        const finalWarningTime = Math.floor(maxDurationSeconds * 0.9);
 
         if (elapsed === warningTime) {
           toast.warning("Interview will end in a few minutes");
@@ -41,7 +45,8 @@ export const useCallTimer = (interviewInfo) => {
       }
     }, 1000);
     
-  }, [interviewInfo]);
+    
+  }, []); // Remove interviewInfo dependency to prevent re-creation
 
   // Stop the call timer
   const stopTimer = useCallback(() => {
@@ -52,8 +57,9 @@ export const useCallTimer = (interviewInfo) => {
     } else {
     }
     
-    // Reset start time and duration
+    // Reset start time, duration and active status
     startTimeRef.current = null;
+    isActiveRef.current = false;
     setCallDuration(0);
   }, []);
 
@@ -72,10 +78,19 @@ export const useCallTimer = (interviewInfo) => {
     if (callTimerRef.current) {
       clearInterval(callTimerRef.current);
       callTimerRef.current = null;
+    } else {
     }
     startTimeRef.current = null;
+    isActiveRef.current = false;
     setCallDuration(0);
   }, []);
+  
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      cleanup();
+    };
+  }, [cleanup]);
 
   return {
     callDuration,
