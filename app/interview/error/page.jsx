@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,7 @@ import { AlertTriangle, ArrowLeft, Mail, RefreshCw, Home } from "lucide-react";
 import LogoFull from "@/public/rolecall-logo-full.png";
 import { useSearchParams } from "next/navigation";
 
-function InterviewErrorPage() {
+function ErrorContent() {
   const searchParams = useSearchParams();
   const errorType = searchParams.get('type') || 'not-found';
 
@@ -150,6 +150,30 @@ function InterviewErrorPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+function InterviewErrorPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-background flex items-center justify-center px-4">
+        <div className="max-w-md w-full">
+          <div className="bg-secondary border border-border rounded-xl p-8 text-center space-y-6">
+            <div className="flex justify-center">
+              <Image
+                src={LogoFull}
+                alt="RoleCall Logo"
+                className="w-40 h-auto"
+              />
+            </div>
+            <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <p className="text-muted-foreground">Loading...</p>
+          </div>
+        </div>
+      </div>
+    }>
+      <ErrorContent />
+    </Suspense>
   );
 }
 
