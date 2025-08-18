@@ -2,6 +2,8 @@
 
 An AI-powered interview platform that uses voice technology to conduct interviews with real-time feedback generation.
 
+**🌐 Live Platform**: [RoleCall.me](https://rolecall.me)
+
 ---
 
 ## 🌟 **What is RoleCall?**
@@ -75,10 +77,11 @@ RoleCall is an AI-powered interview platform that uses voice technology to condu
 4. **Review Results**: Get detailed feedback and scoring for each candidate
 
 ### **For Job Seekers**
-1. **Select Practice Type**: Choose technical, behavioral, or leadership focus
-2. **Take Interview**: Engage in AI-powered voice conversation
-3. **Get Feedback**: Receive detailed performance analysis
-4. **Track Progress**: Monitor improvement over multiple sessions
+1. **Visit [RoleCall.me](https://rolecall.me)** and access practice interviews
+2. **Select Practice Type**: Choose technical, behavioral, or leadership focus
+3. **Take Interview**: Engage in AI-powered voice conversation
+4. **Get Feedback**: Receive detailed performance analysis
+5. **Track Progress**: Monitor improvement over multiple sessions
 
 ---
 
@@ -137,20 +140,23 @@ RoleCall uses a credit-based system for maximum flexibility:
 
 ## 🚀 **Getting Started**
 
+### **Using RoleCall**
+
+1. **Visit** [RoleCall.me](https://rolecall.me)
+2. **Sign up** with Google OAuth to access the platform
+3. **Create interviews** by filling out job details and generating AI questions
+4. **Share interview links** with candidates for completion
+5. **Review results** with detailed AI-generated feedback and scoring
+
 ### **Development Setup**
+
+*For developers wanting to contribute or run locally:*
 
 1. Clone the repository
 2. Install dependencies: `npm install`
 3. Set up environment variables (see CLAUDE.md for required variables)
 4. Run development server: `npm run dev`
 5. Access the application at `http://localhost:3000`
-
-### **Usage**
-
-- **Sign up** with Google OAuth to access the platform
-- **Create interviews** by filling out job details and generating AI questions
-- **Share interview links** with candidates for completion
-- **Review results** with detailed AI-generated feedback and scoring
 
 ---
 
