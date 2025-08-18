@@ -26,7 +26,7 @@ function CandidateFeedbackDialog({ candidate }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200">
+        <Button variant="outline" className="bg-blue-50 cursor-pointer hover:bg-blue-100 text-blue-700 border-blue-200">
           <Award className="w-4 h-4 mr-2" />
           View Feedback
         </Button>

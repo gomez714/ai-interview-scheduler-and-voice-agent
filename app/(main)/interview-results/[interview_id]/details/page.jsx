@@ -29,7 +29,7 @@ function InterviewDetailsPage() {
 
   return (
     <div className="mt-5">
-      <h2 className="font-bold text-2xl">Interview Details</h2>
+      <h2 className="font-bold text-2xl text-foreground">Interview Details</h2>
       <InterviewDetailsContainer interviewDetails={interviewDetails} />
       <CandidatesList candidateList={interviewDetails?.['interview_feedback']}/>
     </div>

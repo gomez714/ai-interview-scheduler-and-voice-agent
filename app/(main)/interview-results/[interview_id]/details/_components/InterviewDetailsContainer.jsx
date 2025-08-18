@@ -86,47 +86,47 @@ function InterviewDetailsContainer({ interviewDetails }) {
 
   return (
     <div className="p-5 bg-secondary rounded-lg border mt-5">
-      <h2 className="text-lg font-bold">{interviewDetails?.jobPosition}</h2>
+      <h2 className="text-lg font-bold text-foreground">{interviewDetails?.jobPosition}</h2>
       <div className="mt-4 flex items-center justify-between lg:pr-52">
         <div className="">
-          <h2 className="text-sm text-gray-700">Duration</h2>
-          <h2 className="text-sm font-bold text-gray-700 flex items-center gap-2 ">
+          <h2 className="text-sm text-muted-foreground">Duration</h2>
+          <h2 className="text-sm font-bold text-foreground flex items-center gap-2 ">
             <Clock className="h-4 w-4" />
             {interviewDetails?.duration} minutes
           </h2>
         </div>
         <div className="">
-          <h2 className="text-sm text-gray-700">Created On</h2>
-          <h2 className="text-sm font-bold text-gray-700 flex items-center gap-2 ">
+          <h2 className="text-sm text-muted-foreground">Created On</h2>
+          <h2 className="text-sm font-bold text-foreground flex items-center gap-2 ">
             <Calendar className="h-4 w-4" />
             {moment(interviewDetails?.created_at).format("DD MMM YYYY")}
           </h2>
         </div>
         <div className="">
-          <h2 className="text-sm text-gray-700">Types</h2>
-          <div className="text-sm font-bold text-gray-700 flex items-center gap-2">
+          <h2 className="text-sm text-muted-foreground">Types</h2>
+          <div className="text-sm font-bold text-foreground flex items-center gap-2">
             <Video className="h-4 w-4" />
             <div className="flex flex-wrap gap-1">
               {interviewTypes.length > 0 ? (
                 interviewTypes.map((type, index) => (
                   <span
                     key={index}
-                    className="bg-blue-100 text-blue-800 px-2 py-1 rounded-md text-xs font-medium"
+                    className="bg-primary/10 text-primary px-2 py-1 rounded-md text-xs font-medium border border-primary/20"
                   >
                     {type}
                   </span>
                 ))
               ) : (
-                <span className="text-gray-500">No types specified</span>
+                <span className="text-muted-foreground">No types specified</span>
               )}
             </div>
           </div>
         </div>
       </div>
       <div className="mt-4">
-        <h2 className="font-bold text-gray-700">Job Description</h2>
+        <h2 className="font-bold text-foreground">Job Description</h2>
         <div className="relative">
-          <p className="text-sm text-gray-700 leading-6 whitespace-pre-wrap">
+          <p className="text-sm text-foreground leading-6 whitespace-pre-wrap">
             {getTruncatedDescription(interviewDetails?.jobDescription)}
           </p>
 
@@ -135,7 +135,7 @@ function InterviewDetailsContainer({ interviewDetails }) {
               onClick={() =>
                 setIsJobDescriptionExpanded(!isJobDescriptionExpanded)
               }
-              className="mt-2 inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors"
+              className="mt-2 inline-flex items-center cursor-pointer gap-1 text-sm text-primary hover:text-primary/80 font-medium transition-colors"
             >
               {isJobDescriptionExpanded ? (
                 <>
@@ -153,7 +153,7 @@ function InterviewDetailsContainer({ interviewDetails }) {
         </div>
       </div>
       <div>
-        <h2 className="font-bold text-gray-700">Questions</h2>
+        <h2 className="font-bold text-foreground">Questions</h2>
         <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-4">
           {interviewDetails?.questionList.map((question, index) => (
             <QuestionCard key={index} question={question} />

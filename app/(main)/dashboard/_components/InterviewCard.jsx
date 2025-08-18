@@ -25,24 +25,24 @@ function InterviewCard({ interview, viewDetails = false }) {
       <div className="bg-secondary border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200 hover:border-primary/20">
         {/* Header Section */}
         <div className="flex items-start justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <div className="p-3 bg-background rounded-lg border border-border group-hover:bg-primary/5 group-hover:border-primary/20 transition-colors">
+          <div className="flex items-center gap-3 min-w-0 flex-1 mr-3">
+            <div className="p-3 bg-background rounded-lg border border-border group-hover:bg-primary/5 group-hover:border-primary/20 transition-colors flex-shrink-0">
               <Video className="h-6 w-6 text-primary" />
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+            <div className="min-w-0 flex-1">
+              <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors truncate">
                 {interview?.jobPosition}
               </h3>
               <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                <Calendar className="h-3 w-3" />
-                <span>{moment(interview?.created_at).format("MMM DD, YYYY")}</span>
+                <Calendar className="h-3 w-3 flex-shrink-0" />
+                <span className="truncate">{moment(interview?.created_at).format("MMM DD, YYYY")}</span>
               </div>
             </div>
           </div>
           
           {candidateCount > 0 && (
-            <div className="px-3 py-1 bg-green-50 border border-green-200 text-green-700 rounded-full text-xs font-medium">
-              {candidateCount} Complete{candidateCount !== 1 ? 'd' : ''}
+            <div className="px-3 py-1 bg-green-50 border border-green-200 text-green-700 rounded-full text-xs font-medium whitespace-nowrap flex-shrink-0">
+              {candidateCount} Completed
             </div>
           )}
         </div>
@@ -113,7 +113,7 @@ function InterviewCard({ interview, viewDetails = false }) {
             <Button
               variant="outline"
               size="sm"
-              className="flex-1 h-9"
+              className="flex-1 h-9 cursor-pointer"
               onClick={handleCopyLink}
             >
               <Copy className="h-4 w-4 mr-2" />
@@ -121,7 +121,7 @@ function InterviewCard({ interview, viewDetails = false }) {
             </Button>
             <Button 
               size="sm"
-              className="flex-1 h-9 bg-primary text-white hover:bg-primary/90 dark:bg-primary dark:text-white dark:hover:bg-primary/90" 
+              className="flex-1 h-9 bg-primary cursor-pointer text-white hover:bg-primary/90 dark:bg-primary dark:text-white dark:hover:bg-primary/90" 
               onClick={onSend}
             >
               <Send className="h-4 w-4 mr-2" />
@@ -134,7 +134,7 @@ function InterviewCard({ interview, viewDetails = false }) {
           <Button
             variant="outline"
             size="sm"
-            className="w-full h-9 flex items-center justify-center gap-2"
+            className="w-full h-9 flex items-center justify-center cursor-pointer gap-2"
             onClick={() => router.push(`/interview-results/${interview?.interview_id}/details`)}
           >
             View Details
