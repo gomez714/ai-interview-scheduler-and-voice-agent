@@ -121,7 +121,7 @@ function InterviewCard({ interview, viewDetails = false }) {
             </Button>
             <Button 
               size="sm"
-              className="flex-1 h-9" 
+              className="flex-1 h-9 bg-primary text-white hover:bg-primary/90 dark:bg-primary dark:text-white dark:hover:bg-primary/90" 
               onClick={onSend}
             >
               <Send className="h-4 w-4 mr-2" />

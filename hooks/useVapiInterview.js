@@ -68,6 +68,9 @@ export const useVapiInterview = (interviewInfo, onFeedbackGeneration, timerContr
       // Set max duration in seconds
       maxDurationSeconds: interviewDetails.duration * 60,
 
+      // Enable the assistant to end the call when interview is complete
+      endCallFunctionEnabled: true,
+
       // Model configuration with system prompt
       model: {
         provider: "openai",
@@ -99,13 +102,17 @@ export const useVapiInterview = (interviewInfo, onFeedbackGeneration, timerContr
           4. If candidate gives short answers, use follow-ups efficiently
           5. Around the midpoint, briefly check pace: "We're making good progress"
           6. In final 5 minutes, begin wrapping up and ask for final thoughts
-          7. End with professional closing before system termination
+          7. End with professional closing and END THE CALL
 
           RESPONSE GUIDELINES:
           - Be encouraging but efficient with your words
           - Don't let pauses drag - gently prompt after 3-4 seconds
           - If candidate goes off-topic, politely redirect: "That's interesting, let me bring us back to..."
           - Keep the energy positive and professional throughout
+
+          CRITICAL: When you have completed the interview (asked all questions or covered the main topics), 
+          say your closing remarks and then IMMEDIATELY use the endCall function to automatically 
+          terminate the interview. Do not wait for the candidate to end the call.
 
           Remember: The system will cut us off at ${interviewDetails.duration} minutes regardless, so pace yourself accordingly!`,
       },

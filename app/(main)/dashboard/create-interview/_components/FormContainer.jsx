@@ -68,8 +68,10 @@ function FormContainer({ onHandleInputChange, goToNextStep }) {
           {InterviewTypes.map((type, index) => (
             <div
               key={index}
-              className={`flex gap-2 p-1 px-2 bg-white border items-center cursor-pointer border-gray-200 rounded-2xl hover:bg-blue-200 ${
-                interviewType.includes(type.title) && "text-primary"
+              className={`flex gap-2 p-1 px-2 bg-background border items-center cursor-pointer border-border rounded-2xl hover:bg-secondary transition-colors ${
+                interviewType.includes(type.title) 
+                  ? "text-primary border-primary/50 bg-primary/10" 
+                  : "text-foreground"
               }`}
               onClick={() => AddInterviewType(type.title)}
             >

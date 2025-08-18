@@ -198,68 +198,24 @@ export default function Home() {
               </Button> */}
             </div>
             
-            {/* Dynamic Stats Based on Audience */}
+            {/* Core Platform Features */}
             <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
-              {selectedAudience === 'recruiter' && (
-                <>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-foreground">10x</div>
-                    <div className="text-sm text-muted-foreground">Faster Screening</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-foreground">95%</div>
-                    <div className="text-sm text-muted-foreground">Time Saved</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-foreground">24/7</div>
-                    <div className="text-sm text-muted-foreground">Available</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-foreground">AI</div>
-                    <div className="text-sm text-muted-foreground">Powered</div>
-                  </div>
-                </>
-              )}
-              {selectedAudience === 'jobseeker' && (
-                <>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-foreground">90%</div>
-                    <div className="text-sm text-muted-foreground">Confidence Boost</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-foreground">5x</div>
-                    <div className="text-sm text-muted-foreground">More Practice</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-foreground">24/7</div>
-                    <div className="text-sm text-muted-foreground">Practice Ready</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-foreground">AI</div>
-                    <div className="text-sm text-muted-foreground">Coaching</div>
-                  </div>
-                </>
-              )}
-              {selectedAudience === 'both' && (
-                <>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-foreground">10k+</div>
-                    <div className="text-sm text-muted-foreground">Interviews</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-foreground">95%</div>
-                    <div className="text-sm text-muted-foreground">Success Rate</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-foreground">24/7</div>
-                    <div className="text-sm text-muted-foreground">Available</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-foreground">AI</div>
-                    <div className="text-sm text-muted-foreground">Powered</div>
-                  </div>
-                </>
-              )}
+              <div className="text-center">
+                <div className="text-2xl font-bold text-foreground">AI</div>
+                <div className="text-sm text-muted-foreground">Powered</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-foreground">15-60</div>
+                <div className="text-sm text-muted-foreground">Min Sessions</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-foreground">24/7</div>
+                <div className="text-sm text-muted-foreground">Available</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-foreground">5</div>
+                <div className="text-sm text-muted-foreground">Interview Types</div>
+              </div>
             </div>
           </div>
         </div>
@@ -494,107 +450,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Social Proof */}
+      {/* Key Benefits */}
       <section className="py-20 bg-secondary/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-            {selectedAudience === 'recruiter' && 'Trusted by Forward-Thinking Companies'}
-            {selectedAudience === 'jobseeker' && 'Join Thousands of Successful Job Seekers'}
-            {selectedAudience === 'both' && 'Trusted by Companies and Job Seekers Alike'}
+            {selectedAudience === 'recruiter' && 'Built for Modern Recruitment'}
+            {selectedAudience === 'jobseeker' && 'Your Interview Practice Partner'}
+            {selectedAudience === 'both' && 'Designed for Interview Excellence'}
           </h2>
           <p className="text-muted-foreground mb-12 max-w-2xl mx-auto">
-            {selectedAudience === 'recruiter' && 'Leading organizations use RoleCall to streamline their hiring process and find the best talent faster'}
-            {selectedAudience === 'jobseeker' && 'Professionals worldwide use RoleCall to practice, improve, and land their dream jobs with confidence'}
-            {selectedAudience === 'both' && 'From Fortune 500 companies to individual job seekers, RoleCall delivers results for everyone'}
+            {selectedAudience === 'recruiter' && 'RoleCall provides AI-powered interview tools designed to streamline your recruitment workflow'}
+            {selectedAudience === 'jobseeker' && 'Practice with AI-driven interviews that help you prepare for real-world scenarios'}
+            {selectedAudience === 'both' && 'Whether you\'re conducting interviews or preparing for them, RoleCall provides the tools you need'}
           </p>
-          
-          {/* Success Stories / Testimonials */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {selectedAudience === 'recruiter' && (
-              <>
-                <TestimonialCard
-                  quote="RoleCall reduced our screening time by 75% while improving candidate quality."
-                  author="Sarah Chen"
-                  role="Head of Talent, TechCorp"
-                  metric="75% faster screening"
-                />
-                <TestimonialCard
-                  quote="The AI insights helped us identify top performers we might have missed."
-                  author="Michael Rodriguez"
-                  role="Hiring Manager, StartupXYZ"
-                  metric="40% better hires"
-                />
-                <TestimonialCard
-                  quote="Candidates love the convenient scheduling and professional experience."
-                  author="Jessica Park"
-                  role="Recruiter, Enterprise Inc"
-                  metric="95% candidate satisfaction"
-                />
-              </>
-            )}
-            
-            {selectedAudience === 'jobseeker' && (
-              <>
-                <TestimonialCard
-                  quote="After 5 practice sessions, I landed my dream job at Google. The feedback was incredibly helpful!"
-                  author="Alex Thompson"
-                  role="Software Engineer"
-                  metric="Hired at Google"
-                />
-                <TestimonialCard
-                  quote="RoleCall helped me overcome interview anxiety. I felt so much more confident in real interviews."
-                  author="Priya Patel"
-                  role="Data Scientist"
-                  metric="3 job offers"
-                />
-                <TestimonialCard
-                  quote="The behavioral interview practice was game-changing. I improved my STAR responses significantly."
-                  author="David Kim"
-                  role="Product Manager"
-                  metric="Salary increase 40%"
-                />
-              </>
-            )}
-            
-            {selectedAudience === 'both' && (
-              <>
-                <TestimonialCard
-                  quote="RoleCall transformed our hiring process completely."
-                  author="Sarah Chen"
-                  role="Head of Talent"
-                  metric="75% time saved"
-                />
-                <TestimonialCard
-                  quote="Landed my dream job after practicing with RoleCall!"
-                  author="Alex Thompson"
-                  role="Software Engineer"
-                  metric="Hired at Google"
-                />
-                <TestimonialCard
-                  quote="Best investment for our recruitment team this year."
-                  author="Michael Rodriguez"
-                  role="Hiring Manager"
-                  metric="10x ROI"
-                />
-              </>
-            )}
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60">
-            {/* Placeholder for company logos */}
-            <div className="bg-background border border-border rounded-lg p-6 h-20 flex items-center justify-center">
-              <span className="text-muted-foreground font-medium">TechCorp</span>
-            </div>
-            <div className="bg-background border border-border rounded-lg p-6 h-20 flex items-center justify-center">
-              <span className="text-muted-foreground font-medium">StartupXYZ</span>
-            </div>
-            <div className="bg-background border border-border rounded-lg p-6 h-20 flex items-center justify-center">
-              <span className="text-muted-foreground font-medium">Enterprise Inc</span>
-            </div>
-            <div className="bg-background border border-border rounded-lg p-6 h-20 flex items-center justify-center">
-              <span className="text-muted-foreground font-medium">Scale-up Co</span>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -608,9 +476,9 @@ export default function Home() {
               {selectedAudience === 'both' && 'Ready to Transform Your Interview Experience?'}
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              {selectedAudience === 'recruiter' && 'Join thousands of companies using RoleCall to hire better, faster, and smarter.'}
-              {selectedAudience === 'jobseeker' && 'Join thousands of professionals using RoleCall to practice, improve, and land their dream jobs.'}
-              {selectedAudience === 'both' && 'Whether you\'re hiring talent or preparing for interviews, join the RoleCall community today.'}
+              {selectedAudience === 'recruiter' && 'Start using RoleCall to streamline your interview process with AI-powered tools.'}
+              {selectedAudience === 'jobseeker' && 'Begin practicing with RoleCall to improve your interview skills and build confidence.'}
+              {selectedAudience === 'both' && 'Whether you\'re hiring talent or preparing for interviews, RoleCall provides the tools you need.'}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

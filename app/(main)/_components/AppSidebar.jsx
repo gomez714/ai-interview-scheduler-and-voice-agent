@@ -43,7 +43,7 @@ export default function AppSidebar() {
         
         {/* Create Interview Button */}
         <Link href="/dashboard/create-interview" className="w-full">
-          <Button className="w-full h-11 gap-2 cursor-pointer shadow-sm">
+          <Button className="w-full h-11 gap-2 cursor-pointer shadow-sm bg-primary text-white hover:bg-primary/90 dark:bg-primary dark:text-white dark:hover:bg-primary/90">
             <Plus className="h-4 w-4" />
             Create New Interview
           </Button>
@@ -63,7 +63,7 @@ export default function AppSidebar() {
                     asChild 
                     className={
                       isActive
-                        ? "h-11 px-3 rounded-lg bg-primary text-primary-foreground shadow-sm border border-primary/20 cursor-default hover:bg-primary hover:text-primary-foreground hover:border-primary/20 hover:shadow-sm"
+                        ? "h-11 px-3 rounded-lg bg-primary text-white shadow-sm border border-primary/20 cursor-default hover:bg-primary hover:text-white hover:border-primary/20 hover:shadow-sm dark:bg-primary dark:text-white dark:hover:bg-primary dark:hover:text-white"
                         : "h-11 px-3 rounded-lg transition-all duration-200 group hover:bg-background hover:border border-transparent hover:border-border hover:shadow-sm cursor-pointer"
                     }
                   >
@@ -74,17 +74,17 @@ export default function AppSidebar() {
                     >
                       <div className={
                         isActive 
-                          ? "p-1.5 rounded-md bg-primary-foreground/10 hover:bg-primary-foreground/10 hover:border-transparent" 
+                          ? "p-1.5 rounded-md bg-white/20 hover:bg-white/20 hover:border-transparent dark:bg-white/20 dark:hover:bg-white/20" 
                           : "p-1.5 rounded-md transition-colors bg-background border border-border group-hover:border-primary/20"
                       }>
                         <option.icon className={`
                           h-4 w-4 transition-colors
-                          ${isActive ? "text-primary-foreground" : "text-primary"}
+                          ${isActive ? "text-white dark:text-white" : "text-primary"}
                         `} />
                       </div>
                       <span className={`
                         font-medium transition-colors
-                        ${isActive ? "text-primary-foreground" : "text-foreground"}
+                        ${isActive ? "text-white dark:text-white" : "text-foreground"}
                       `}>
                         {option.name}
                       </span>

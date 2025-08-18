@@ -3,7 +3,6 @@ import supabase from "@/services/supabaseClient";
 
 class FeedbackService {
   static async generateAndSaveFeedback(conversationData, interviewInfo, router) {
-    
     // Validate conversation data before sending
     if (!conversationData || conversationData.length === 0) {
       console.warn("No conversation data available for feedback generation");
@@ -19,8 +18,14 @@ class FeedbackService {
       
       // Navigate to completed page
       const interviewId = interviewInfo?.interviewDetails?.interview_id;
+      
       if (router && interviewId) {
         router.replace(`/interview/${interviewId}/completed`);
+      } else {
+        console.error("Cannot redirect - missing router or interviewId", {
+          hasRouter: !!router,
+          interviewId: interviewId
+        });
       }
       
       return { success: true, feedback };
