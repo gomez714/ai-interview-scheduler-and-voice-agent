@@ -85,48 +85,51 @@ function InterviewDetailsContainer({ interviewDetails }) {
   };
 
   return (
-    <div className="p-5 bg-secondary rounded-lg border mt-5">
-      <h2 className="text-lg font-bold text-foreground">{interviewDetails?.jobPosition}</h2>
-      <div className="mt-4 flex items-center justify-between lg:pr-52">
-        <div className="">
+    <div className="p-4 sm:p-5 lg:p-6 bg-secondary rounded-lg border mt-5">
+      <h2 className="text-xl sm:text-lg lg:text-xl font-bold text-foreground">{interviewDetails?.jobPosition}</h2>
+      {/* Mobile-first responsive layout for interview metadata */}
+      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:pr-52">
+        <div className="space-y-2">
           <h2 className="text-sm text-muted-foreground">Duration</h2>
-          <h2 className="text-sm font-bold text-foreground flex items-center gap-2 ">
-            <Clock className="h-4 w-4" />
-            {interviewDetails?.duration} minutes
-          </h2>
-        </div>
-        <div className="">
-          <h2 className="text-sm text-muted-foreground">Created On</h2>
-          <h2 className="text-sm font-bold text-foreground flex items-center gap-2 ">
-            <Calendar className="h-4 w-4" />
-            {moment(interviewDetails?.created_at).format("DD MMM YYYY")}
-          </h2>
-        </div>
-        <div className="">
-          <h2 className="text-sm text-muted-foreground">Types</h2>
           <div className="text-sm font-bold text-foreground flex items-center gap-2">
-            <Video className="h-4 w-4" />
-            <div className="flex flex-wrap gap-1">
+            <Clock className="h-4 w-4 flex-shrink-0" />
+            <span>{interviewDetails?.duration} minutes</span>
+          </div>
+        </div>
+        
+        <div className="space-y-2">
+          <h2 className="text-sm text-muted-foreground">Created On</h2>
+          <div className="text-sm font-bold text-foreground flex items-center gap-2">
+            <Calendar className="h-4 w-4 flex-shrink-0" />
+            <span>{moment(interviewDetails?.created_at).format("DD MMM YYYY")}</span>
+          </div>
+        </div>
+        
+        <div className="space-y-2 sm:col-span-2 lg:col-span-1">
+          <h2 className="text-sm text-muted-foreground">Types</h2>
+          <div className="flex items-start gap-2">
+            <Video className="h-4 w-4 flex-shrink-0 mt-0.5" />
+            <div className="flex flex-wrap gap-1 min-w-0">
               {interviewTypes.length > 0 ? (
                 interviewTypes.map((type, index) => (
                   <span
                     key={index}
-                    className="bg-primary/10 text-primary px-2 py-1 rounded-md text-xs font-medium border border-primary/20"
+                    className="bg-primary/10 text-primary px-2 py-1 rounded-md text-xs font-medium border border-primary/20 whitespace-nowrap"
                   >
                     {type}
                   </span>
                 ))
               ) : (
-                <span className="text-muted-foreground">No types specified</span>
+                <span className="text-muted-foreground text-sm">No types specified</span>
               )}
             </div>
           </div>
         </div>
       </div>
-      <div className="mt-4">
-        <h2 className="font-bold text-foreground">Job Description</h2>
+      <div className="mt-6 md:mt-8">
+        <h2 className="text-base sm:text-lg font-bold text-foreground mb-3">Job Description</h2>
         <div className="relative">
-          <p className="text-sm text-foreground leading-6 whitespace-pre-wrap">
+          <p className="text-sm sm:text-base text-foreground leading-relaxed whitespace-pre-wrap">
             {getTruncatedDescription(interviewDetails?.jobDescription)}
           </p>
 
@@ -135,7 +138,7 @@ function InterviewDetailsContainer({ interviewDetails }) {
               onClick={() =>
                 setIsJobDescriptionExpanded(!isJobDescriptionExpanded)
               }
-              className="mt-2 inline-flex items-center cursor-pointer gap-1 text-sm text-primary hover:text-primary/80 font-medium transition-colors"
+              className="mt-3 inline-flex items-center cursor-pointer gap-1 text-sm sm:text-base text-primary hover:text-primary/80 font-medium transition-colors py-2 px-1 touch-manipulation"
             >
               {isJobDescriptionExpanded ? (
                 <>
@@ -152,9 +155,9 @@ function InterviewDetailsContainer({ interviewDetails }) {
           )}
         </div>
       </div>
-      <div>
-        <h2 className="font-bold text-foreground">Questions</h2>
-        <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="mt-8 md:mt-10">
+        <h2 className="text-base sm:text-lg font-bold text-foreground mb-4">Questions</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {interviewDetails?.questionList.map((question, index) => (
             <QuestionCard key={index} question={question} />
           ))}
