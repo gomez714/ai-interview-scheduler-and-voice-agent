@@ -10,14 +10,16 @@ import {
   Slack,
   ArrowLeft,
   Plus,
+  ChevronRight,
 } from "lucide-react";
 import React from "react";
 import Link from "next/link";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 function InterviewLink({ interviewId, formData, questions = [] }) {
   const url = `${process.env.NEXT_PUBLIC_HOST_URL}/interview/${interviewId}`;
-
+  const router = useRouter();
   const handleCopyLink = async () => {
     await navigator.clipboard.writeText(url);
     toast.success("Link copied to clipboard");
@@ -44,6 +46,10 @@ function InterviewLink({ interviewId, formData, questions = [] }) {
             <CopyIcon />
             Copy Link
           </Button>
+          <Button variant="outline" onClick={() => router.push(`/interview/${interviewId}`)} className="cursor-pointer">
+            <ChevronRight />
+            Go to Interview
+          </Button>
         </div>
         <hr className="my-7 border-gray-500" />
         <div className="flex gap-5">
@@ -62,7 +68,8 @@ function InterviewLink({ interviewId, formData, questions = [] }) {
         </div>
       </div>
 
-      <div className="mt-7 bg-secondary p-5 rounded-lg w-full">
+      {/* TODO: Add share via email and slack or other messaging apps or social media */}
+      {/* <div className="mt-7 bg-secondary p-5 rounded-lg w-full">
         <h2 className="font-semibold">Share via</h2>
         <div className="mt-3 flex gap-3">
           <Button variant="outline">
@@ -73,12 +80,9 @@ function InterviewLink({ interviewId, formData, questions = [] }) {
             <Slack />
             Slack
           </Button>
-          <Button variant="outline">
-            <Mail />
-            Email
-          </Button>
+          
         </div>
-      </div>
+      </div> */}
       <div className="mt-7 flex w-full justify-between gap-5">
         <Link href="/dashboard">
           <Button
