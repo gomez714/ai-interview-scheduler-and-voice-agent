@@ -22,7 +22,7 @@ function CreateOptions() {
             Create New Interview
           </h3>
           <p className="text-muted-foreground text-sm leading-relaxed">
-            Create AI-powered interviews with custom questions and schedule candidates for seamless evaluation
+            Create AI-powered interviews with custom questions and create a mock interview link you or a friend can use to practice.
           </p>
         </div>
         
@@ -55,7 +55,7 @@ function CreateOptions() {
             Create New Phone Screening
           </h3>
           <p className="text-muted-foreground text-sm leading-relaxed">
-            Schedule live phone screening calls with candidates for initial assessment and qualification
+            Schedule live phone screening calls with AI to practice your interview skills.
           </p>
         </div>
         

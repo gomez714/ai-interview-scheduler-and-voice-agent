@@ -1,6 +1,6 @@
-# 🎯 RoleCall - AI-Powered Interview Platform
+# 🎯 RoleCall - AI-Powered Interview Practice Platform
 
-An AI-powered interview platform that uses voice technology to conduct interviews with real-time feedback generation.
+Master your next job interview with AI-powered practice sessions, instant feedback, and personalized coaching available 24/7.
 
 **🌐 Live Platform**: [RoleCall.me](https://rolecall.me)
 
@@ -8,157 +8,175 @@ An AI-powered interview platform that uses voice technology to conduct interview
 
 ## 🌟 **What is RoleCall?**
 
-RoleCall is an AI-powered interview platform that uses voice technology to conduct interviews. The platform serves both recruiters and job seekers:
+RoleCall is an AI-powered interview practice platform that helps job seekers prepare for their dream roles through realistic voice interviews and intelligent feedback.
 
-### 🏢 **For Recruiters & Hiring Managers**
-- **Automated Screening**: Create AI-powered interviews for candidate evaluation
-- **Question Generation**: AI automatically generates relevant questions based on job descriptions
-- **Detailed Analytics**: Get comprehensive feedback and scoring on candidate responses
-- **Easy Sharing**: Generate shareable interview links for candidates
-
-### 👨‍💼 **For Job Seekers & Professionals**
-- **Interview Practice**: Practice interviews in a safe environment
-- **Real-time Feedback**: Receive detailed performance analysis after sessions
-- **Multiple Question Types**: Practice behavioral, technical, and leadership scenarios
-- **Progress Tracking**: Monitor improvement over multiple practice sessions
+### 🎓 **Your Personal Interview Coach**
+- **Realistic Practice**: AI-powered voice interviews that simulate real interview scenarios
+- **Instant Feedback**: Get detailed performance analysis immediately after each session
+- **Job-Specific Preparation**: Simply paste any job description or LinkedIn URL for tailored questions
+- **Progress Tracking**: Monitor your improvement across multiple practice sessions
+- **24/7 Availability**: Practice anytime, anywhere at your own pace
 
 ---
 
 ## 🚀 **Key Features**
 
 ### 🤖 **AI Voice Interviews**
-- **Natural Conversations**: Advanced AI that conducts realistic, flowing interviews
+- **Natural Conversations**: Advanced AI that conducts realistic, flowing interview dialogues
 - **Adaptive Questioning**: Dynamic follow-up questions based on your responses
-- **Professional Voice**: High-quality voice synthesis for authentic interview experience
-- **Real-time Transcription**: Accurate conversation capture and analysis
+- **Professional Experience**: High-quality voice synthesis for authentic interview atmosphere
+- **Real-time Transcription**: Accurate conversation capture for detailed review
 
 ### 📊 **Intelligent Feedback System**
 - **Multi-dimensional Scoring**: Evaluation across Technical Skills, Communication, Problem Solving, Experience, and Leadership
-- **Evidence-based Analysis**: Detailed breakdown of performance with specific examples
-- **Actionable Insights**: Concrete recommendations for improvement
-- **Progress Tracking**: Monitor improvement over time with detailed analytics
+- **Evidence-based Analysis**: Detailed breakdown of your performance with specific examples
+- **Actionable Insights**: Concrete recommendations for improvement areas
+- **Progress Tracking**: Monitor your growth over time with detailed analytics
 
 ### ⚡ **Smart Interview Creation**
-- **AI Question Generation**: Automatically create relevant questions based on job descriptions
+- **Job Description Magic**: Paste any job URL or description text for instant question generation
+- **LinkedIn Integration**: Automatically extract job requirements from LinkedIn postings
 - **Multiple Interview Types**: Technical, Behavioral, Experience, Problem Solving, Leadership
-- **Customizable Duration**: 15-60 minute interviews with intelligent time management
-- **Rich Question Metadata**: Difficulty levels, time estimates, and evaluation criteria
+- **Flexible Duration**: 15-60 minute practice sessions that fit your schedule
 
-### 🔗 **Seamless Sharing & Scheduling**
-- **One-click Sharing**: Generate shareable interview links instantly
-- **Email Integration**: Professional invitation templates for candidates
-- **Flexible Scheduling**: Candidates can take interviews at their convenience
-- **Real-time Status**: Track interview completion and candidate progress
+### 🎯 **Personalized Practice**
+- **Role-Specific Questions**: Tailored questions based on the exact job you're applying for
+- **Industry Focus**: Practice scenarios specific to your field and career level
+- **Difficulty Adaptation**: Questions that match your experience and target role
+- **Safe Environment**: Build confidence without judgment or pressure
 
 ---
 
-## 🎯 **Use Cases**
+## 🎯 **Perfect For**
 
-### **For Recruiters**
-- **Initial Screening**: Use AI interviews to evaluate candidates consistently
-- **Technical Assessment**: Test problem-solving and technical communication skills
-- **Standardized Evaluation**: Compare candidates using the same questions and criteria
-- **Scalable Process**: Handle multiple candidates without scheduling conflicts
+### **Job Seekers**
+- **Career Changers**: Practice explaining transferable skills and career transitions
+- **Recent Graduates**: Build confidence and learn professional interview etiquette
+- **Senior Professionals**: Refine leadership storytelling and strategic thinking
+- **Technical Roles**: Practice explaining complex concepts clearly and concisely
 
-### **For Job Seekers**
-- **Interview Practice**: Practice answering questions in a realistic environment
-- **Skill Development**: Improve technical explanation and storytelling abilities
-- **Confidence Building**: Get comfortable with interview format and timing
-- **Performance Tracking**: Monitor improvement across multiple practice sessions
+### **Interview Scenarios**
+- **Behavioral Interviews**: Master the STAR method with realistic scenarios
+- **Technical Interviews**: Practice coding explanations and problem-solving discussions
+- **Leadership Interviews**: Develop compelling stories about team management and decision-making
+- **Phone & Video Interviews**: Get comfortable with remote interview dynamics
 
 ---
 
 ## 🏁 **How It Works**
 
-### **For Recruiters**
-1. **Create Interview**: Set up job details, duration, and question types
-2. **AI Generates Questions**: System creates relevant questions based on job description
-3. **Share Link**: Send interview link to candidates
-4. **Review Results**: Get detailed feedback and scoring for each candidate
+### **3 Simple Steps to Interview Mastery**
 
-### **For Job Seekers**
-1. **Visit [RoleCall.me](https://rolecall.me)** and access practice interviews
-2. **Select Practice Type**: Choose technical, behavioral, or leadership focus
-3. **Take Interview**: Engage in AI-powered voice conversation
-4. **Get Feedback**: Receive detailed performance analysis
-5. **Track Progress**: Monitor improvement over multiple sessions
+1. **Paste Job Description**
+   - Copy any job posting URL (LinkedIn, Indeed, company websites)
+   - Or paste the job description text directly
+   - Our AI instantly analyzes requirements and creates tailored questions
+
+2. **Practice with AI**
+   - Engage in realistic voice conversations with our intelligent AI interviewer
+   - Answer questions naturally while receiving adaptive follow-ups
+   - Practice in a judgment-free environment at your own pace
+
+3. **Review & Improve**
+   - Get detailed feedback immediately after each session
+   - Track your progress across multiple practice rounds
+   - Focus on improvement areas with specific recommendations
 
 ---
 
+## 💡 **Why Choose RoleCall?**
+
+### **🚀 Instant Setup**
+- No complex configuration - just paste a job URL and start practicing
+- Works with any job posting from any website
+- AI handles all the question generation automatically
+
+### **🎯 Job-Specific Preparation**
+- Questions tailored to your exact target role
+- Industry-specific scenarios and terminology
+- Company culture and role requirements integrated
+
+### **📈 Measurable Improvement**
+- Track your progress over time with detailed analytics
+- See improvement in specific skill areas
+- Build confidence through repeated practice
+
+### **🔒 Safe Practice Environment**
+- No judgment, no pressure - just focused improvement
+- Practice unlimited times until you feel confident
+- Private sessions with secure data handling
+
+---
 
 ## 💳 **Pricing & Credits**
 
 RoleCall uses a credit-based system for maximum flexibility:
 
 ### **Credit Packages**
-- **Basic**: $10 for 5 credits ($2.00 per interview)
-- **Pro**: $20 for 12 credits ($1.67 per interview) - *Most Popular*
-- **Enterprise**: Custom pricing for unlimited interviews
+- **Starter**: $10 for 5 practice sessions ($2.00 per interview)
+- **Pro**: $20 for 12 practice sessions ($1.67 per interview) - *Most Popular*
+- **Unlimited**: $50 for unlimited monthly practice sessions
 
 ### **What's Included**
-- ✅ AI-generated questions and feedback
-- ✅ Detailed performance analytics
-- ✅ Progress tracking and insights
-- ✅ Email invitation templates
-- ✅ Shareable interview links
+- ✅ AI-generated job-specific questions
+- ✅ Detailed performance feedback and scoring
+- ✅ Progress tracking and improvement insights
+- ✅ Job description extraction from any URL
+- ✅ Multiple interview types and scenarios
 - ✅ 24/7 platform availability
+
+### **Free Trial**
+- Get started with free practice credits
+- No credit card required to begin
+- Experience the full platform before upgrading
 
 ---
 
 ## 🛠️ **Technical Requirements**
 
 - Modern web browser with microphone access
-- Stable internet connection
+- Stable internet connection for voice processing
 - JavaScript enabled
 
 ---
 
-## 📊 **Key Features**
+## 📊 **Platform Features**
 
-### **Interview Creation**
-- Job details input form with position and description
-- AI question generation based on job requirements 
-- Configurable interview duration (15-60 minutes)
+### **Interview Practice System**
+- Job description input with automatic URL extraction
+- AI question generation based on role requirements 
+- Configurable practice duration (15-60 minutes)
 - Support for multiple question types (Technical, Behavioral, Leadership, etc.)
 
-### **Voice Interview System**
+### **Voice Interview Technology**
 - Real-time voice conversations powered by Vapi.ai
-- Automatic transcription and conversation tracking
-- Timer management with time limit enforcement
-- Professional AI interviewer voice
+- Automatic transcription and conversation analysis
+- Timer management with session tracking
+- Professional AI interviewer with natural speech patterns
 
 ### **Feedback & Analytics**
 - Multi-dimensional scoring (Technical, Communication, Problem Solving, Experience, Leadership)
-- Evidence-based evaluation with detailed recommendations
-- Interview transcript storage and review
-- Progress tracking across multiple sessions
+- Evidence-based evaluation with improvement recommendations
+- Interview transcript storage and review capability
+- Progress tracking across multiple practice sessions
 
 ---
-
-
-
 
 ## 🚀 **Getting Started**
 
-### **Using RoleCall**
+### **Start Practicing Today**
 
 1. **Visit** [RoleCall.me](https://rolecall.me)
-2. **Sign up** with Google OAuth to access the platform
-3. **Create interviews** by filling out job details and generating AI questions
-4. **Share interview links** with candidates for completion
-5. **Review results** with detailed AI-generated feedback and scoring
+2. **Sign up** with Google OAuth for instant access
+3. **Paste a job description** or LinkedIn URL for your target role
+4. **Start practicing** with AI-generated questions tailored to that job
+5. **Review feedback** and track your improvement over time
 
-### **Development Setup**
-
-*For developers wanting to contribute or run locally:*
-
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Set up environment variables (see CLAUDE.md for required variables)
-4. Run development server: `npm run dev`
-5. Access the application at `http://localhost:3000`
-
----
+### **Tips for Success**
+- Practice regularly to build confidence and fluency
+- Use real job postings you're interested in applying for
+- Focus on improvement areas highlighted in your feedback
+- Practice different types of interviews (behavioral, technical, etc.)
 
 ---
 
@@ -167,9 +185,19 @@ RoleCall uses a credit-based system for maximum flexibility:
 *This application is built with:*
 - **Framework**: Next.js 15.4.6 with App Router
 - **Database**: Supabase (PostgreSQL)
-- **AI**: OpenAI GPT-4o-mini
+- **AI**: OpenAI GPT-4o-mini for intelligent question generation
 - **Voice**: Vapi.ai for real-time voice interactions
-- **Payments**: PayPal integration
-- **UI**: Radix UI with Tailwind CSS
+- **Payments**: PayPal integration for credit purchases
+- **UI**: Radix UI with Tailwind CSS for modern design
 
-*For technical documentation and setup instructions, see [DEVELOPMENT.md](DEVELOPMENT.md)*
+*For technical documentation and setup instructions, see [CLAUDE.md](CLAUDE.md)*
+
+---
+
+## 🎯 **Ready to Master Your Next Interview?**
+
+Join thousands of job seekers who have improved their interview skills and landed their dream jobs with RoleCall.
+
+**[Start Practicing Now →](https://rolecall.me)**
+
+*No credit card required • Free practice credits • Instant setup*

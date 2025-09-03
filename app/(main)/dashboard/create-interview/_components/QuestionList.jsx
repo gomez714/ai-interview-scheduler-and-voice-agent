@@ -125,11 +125,11 @@ function QuestionList({ formData, onCreateInterviewLink }) {
   return (
     <div>
       {loading && (
-        <div className="p-5 bg-blue-50 rounded-xl border border-primary flex items-center gap-2">
-          <Loader2Icon className="animate-spin" />
+        <div className="p-5 bg-primary/10 border border-primary/20 rounded-xl flex items-center gap-2">
+          <Loader2Icon className="animate-spin text-primary" />
           <div>
-            <h2 className="font-medium">Generating Interview Questions</h2>
-            <p className="text-sm text-primary">
+            <h2 className="font-medium text-foreground">Generating Interview Questions</h2>
+            <p className="text-sm text-muted-foreground">
               Our AI is crafting personalized questions based on your job
               position and description
             </p>

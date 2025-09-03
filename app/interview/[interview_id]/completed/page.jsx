@@ -1,27 +1,68 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter, useParams } from "next/navigation";
 import {
   CheckCircle,
-  Clock,
-  Mail,
-  Calendar,
+  Trophy,
+  TrendingUp,
+  Home,
+  RefreshCw,
   FileText,
-  ArrowLeft,
+  Target,
+  Brain,
   Sparkles,
-  MessageSquare,
-  BarChart3,
-  Timer,
-  Users,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import LogoFull from "@/public/rolecall-logo-full.png";
 import ThemeToggle from "../../_components/ThemeToggle";
 
-
 function InterviewCompletedPage() {
+  const router = useRouter();
+  const { interview_id } = useParams();
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  useEffect(() => {
+    // Trigger confetti animation on mount
+    setShowConfetti(true);
+    const timer = setTimeout(() => setShowConfetti(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const navigateToDashboard = () => {
+    router.push('/dashboard');
+  };
+
+  const startNewInterview = () => {
+    router.push('/dashboard/create-interview');
+  };
+
+  const viewInterviewResults = () => {
+    router.push('/interview-results');
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">
+      {/* Confetti Animation */}
+      {showConfetti && (
+        <div className="fixed inset-0 pointer-events-none z-50">
+          <div className="absolute inset-0 animate-pulse">
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-2 h-2 bg-primary rounded-full animate-bounce"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 2}s`,
+                  animationDuration: `${2 + Math.random() * 2}s`,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Theme Toggle - Top Right Corner */}
       <div className="absolute top-4 right-4 z-10">
         <ThemeToggle />
@@ -40,8 +81,8 @@ function InterviewCompletedPage() {
             />
           </div>
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-sm font-medium text-primary mb-2">
-            <Sparkles className="h-4 w-4" />
-            AI-Powered Interview Platform
+            <Brain className="h-4 w-4" />
+            AI-Powered Mock Interview Practice
           </div>
         </div>
 
@@ -53,139 +94,120 @@ function InterviewCompletedPage() {
             <div className="relative">
               {/* Animated Success Icon */}
               <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 dark:bg-green-900/50 border-4 border-green-200 dark:border-green-700 rounded-full mb-6">
-                <CheckCircle className="w-10 h-10 text-green-600 dark:text-green-400" />
+                <Trophy className="w-10 h-10 text-green-600 dark:text-green-400" />
               </div>
               
               <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Interview Completed Successfully!
+                Great Job! Interview Practice Complete! 🎉
               </h1>
               
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Thank you for participating in the interview. Your responses have been successfully recorded and our AI is now generating detailed feedback.
+                You've successfully completed your mock interview session. Our AI is analyzing your performance to provide personalized feedback and improvement suggestions.
               </p>
             </div>
           </div>
 
           <div className="p-6 md:p-8">
-            {/* Process Timeline */}
+            {/* What's Next Section */}
             <div className="mb-8">
-              <div className="bg-primary/5 border border-primary/20 rounded-xl p-6">
+              <div className="bg-secondary/30 border border-border rounded-xl p-6">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 bg-primary/10 rounded-lg">
-                    <BarChart3 className="h-6 w-6 text-primary" />
+                    <Sparkles className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-semibold text-foreground">What Happens Next</h2>
-                    <p className="text-muted-foreground">Your interview journey continues</p>
+                    <h2 className="text-xl font-semibold text-foreground">What's Happening Now</h2>
+                    <p className="text-muted-foreground">Your journey to interview mastery continues</p>
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6">
-                  {/* Step 1 */}
-                  <div className="relative">
-                    <div className="bg-background border border-border rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
-                          1
-                        </div>
-                        <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
-                          <MessageSquare className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                        </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* AI Analysis */}
+                  <div className="bg-background border border-border rounded-lg p-4 hover:shadow-md transition-shadow">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                        1
                       </div>
-                      <h3 className="font-semibold text-foreground mb-2">AI Analysis</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Advanced AI system analyzes your responses for comprehensive insights and scoring
-                      </p>
+                      <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                        <Brain className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                      </div>
+                    </div>
+                    <h3 className="font-semibold text-foreground mb-2">AI Analysis in Progress</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Our advanced AI is analyzing your responses, communication style, and technical accuracy to generate personalized feedback
+                    </p>
+                    <div className="mt-3">
+                      <div className="flex items-center gap-2 text-sm">
+                        <div className="h-3 w-3 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                        <span className="text-blue-600 dark:text-blue-400">Analyzing responses...</span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Step 2 */}
-                  <div className="relative">
-                    <div className="bg-background border border-border rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
-                          2
-                        </div>
-                        <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
-                          <Users className="h-4 w-4 text-purple-600 dark:text-purple-400" />
-                        </div>
+                  {/* Feedback Ready */}
+                  <div className="bg-background border border-border rounded-lg p-4 hover:shadow-md transition-shadow">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex-shrink-0 w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                        2
                       </div>
-                      <h3 className="font-semibold text-foreground mb-2">Recruiter Review</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Hiring team reviews AI insights along with your interview performance
-                      </p>
+                      <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                        <TrendingUp className="h-4 w-4 text-green-600 dark:text-green-400" />
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Step 3 */}
-                  <div className="relative">
-                    <div className="bg-background border border-border rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
-                          3
-                        </div>
-                        <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
-                          <Mail className="h-4 w-4 text-green-600 dark:text-green-400" />
-                        </div>
+                    <h3 className="font-semibold text-foreground mb-2">Detailed Feedback Ready Soon</h3>
+                    <p className="text-sm text-muted-foreground">
+                      You'll receive comprehensive feedback including strengths, areas for improvement, and personalized practice recommendations
+                    </p>
+                    <div className="mt-3">
+                      <div className="text-sm text-green-600 dark:text-green-400">
+                        ⏱️ Ready in 2-3 minutes
                       </div>
-                      <h3 className="font-semibold text-foreground mb-2">Follow-up Communication</h3>
-                      <p className="text-sm text-muted-foreground">
-                        You'll receive next steps within 3-5 business days via email
-                      </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Key Information Cards */}
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
-              {/* Processing Status */}
-              <div className="bg-secondary/50 border border-border rounded-xl p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <Timer className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">Processing Status</h3>
-                    <p className="text-sm text-muted-foreground">Currently analyzing your responses</p>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-sm">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    <span className="text-muted-foreground">Interview recorded successfully</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <div className="h-4 w-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
-                    <span className="text-muted-foreground">AI analysis in progress</span>
-                  </div>
-                </div>
-              </div>
+            {/* Action Buttons */}
+            <div className="grid md:grid-cols-3 gap-4 mb-8">
+              <Button 
+                onClick={navigateToDashboard}
+                className="cursor-pointer h-16 flex flex-col gap-2 bg-primary hover:bg-primary/90"
+              >
+                <Home className="h-5 w-5" />
+                <span>Back to Dashboard</span>
+              </Button>
+              
+              <Button 
+                onClick={startNewInterview}
+                variant="outline"
+                className="cursor-pointer h-16 flex flex-col gap-2 border-primary text-primary hover:bg-primary/10"
+              >
+                <RefreshCw className="h-5 w-5" />
+                <span>Practice Again</span>
+              </Button>
 
-              {/* Contact Information */}
-              <div className="bg-secondary/50 border border-border rounded-xl p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <Mail className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">Need Assistance?</h3>
-                    <p className="text-sm text-muted-foreground">We're here to help</p>
-                  </div>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Questions about your interview or the process? Contact the recruiting team who scheduled this session.
-                </p>
-              </div>
+              <Button 
+                onClick={viewInterviewResults}
+                variant="outline"
+                className="cursor-pointer h-16 flex flex-col gap-2"
+              >
+                <FileText className="h-5 w-5" />
+                <span>View Results</span>
+              </Button>
             </div>
 
-            {/* Security & Privacy Note */}
-            <div className="bg-background border border-border rounded-lg p-4 text-center">
-              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                <FileText className="h-4 w-4" />
-                <span>Your interview data is securely encrypted and stored. No further action required.</span>
+            {/* Motivational Section */}
+            <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 border border-primary/20 rounded-lg p-6 text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
+                <Trophy className="h-6 w-6 text-primary" />
               </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">
+                Every Practice Session Makes You Stronger! 💪
+              </h3>
+              <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
+                You're building valuable interview skills with each session. Keep practicing to boost your confidence and land your dream job!
+              </p>
             </div>
           </div>
         </div>
@@ -193,7 +215,7 @@ function InterviewCompletedPage() {
         {/* Footer */}
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
-            Powered by RoleCall AI Interview Platform
+            Powered by RoleCall AI • Your Personal Interview Coach
           </p>
         </div>
       </div>

@@ -7,12 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import InterviewCard from "../dashboard/_components/InterviewCard";
 import InterviewCardSkeleton from "@/components/ui/InterviewCardSkeleton";
+import { useRouter } from "next/navigation";
 
 function ScheduledInterviewsPage() {
   const { user, authChecked } = useUser();
   const [interviewList, setInterviewList] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const router = useRouter();
   const getInterviewList = async () => {
     if (!user?.email) {
       setLoading(false);
@@ -52,7 +53,7 @@ function ScheduledInterviewsPage() {
   return (
     <div className="mt-5">
       <h2 className="font-bold text-xl">
-        Interview List with Candidate Feedback
+        Interview List with Feedback Results
       </h2>
 
       {/* Loading State */}
@@ -73,10 +74,10 @@ function ScheduledInterviewsPage() {
           <div className="text-center space-y-2">
             <h3 className="text-lg font-semibold text-foreground">No Scheduled Interviews Yet</h3>
             <p className="text-muted-foreground text-sm">
-              Create your first interview to see it appear here with candidate feedback
+              Create your first interview to see it appear here with feedback results
             </p>
           </div>
-          <Button className="mt-2">
+          <Button className="mt-2 cursor-pointer" onClick={() => router.push("/dashboard/create-interview")}>
             <Plus className="h-4 w-4 mr-2" />
             Create New Interview
           </Button>

@@ -10,14 +10,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { 
   ArrowRight, 
   Bot, 
-  Users, 
   Clock, 
   Shield, 
   Star, 
   Zap,
   CheckCircle,
   Play,
-  Calendar,
   MessageSquare,
   BarChart3,
   Sparkles,
@@ -25,15 +23,18 @@ import {
   TrendingUp,
   Brain,
   Award,
-  Briefcase,
-  GraduationCap
+  GraduationCap,
+  Mic,
+  BookOpen,
+  Trophy,
+  Users,
+  ChevronRight
 } from "lucide-react";
 import logo from "@/public/rolecall-logo-blue.png";
 
 export default function Home() {
   const { user, loading } = useSimpleAuth();
   const router = useRouter();
-  const [selectedAudience, setSelectedAudience] = React.useState('both'); // 'recruiter', 'jobseeker', 'both'
 
   // Redirect to dashboard if user is authenticated
   useEffect(() => {
@@ -72,13 +73,13 @@ export default function Home() {
             
             <div className="flex items-center gap-4">
               <Link href="/auth">
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="cursor-pointer">
                   Sign In
                 </Button>
               </Link>
               <Link href="/auth">
-                <Button size="sm" className="gap-2">
-                  Get Started
+                <Button size="sm" className="gap-2 cursor-pointer">
+                  Start Practicing
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
@@ -93,128 +94,141 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-sm font-medium text-primary mb-6">
-              <Sparkles className="h-4 w-4" />
-              AI-Powered Interview Platform
+              <Brain className="h-4 w-4" />
+              AI-Powered Interview Practice
             </div>
             
-            {/* Audience Toggle */}
-            <div className="flex justify-center mb-8">
-              <div className="bg-secondary border border-border rounded-lg p-1 inline-flex">
-                <button
-                  onClick={() => setSelectedAudience('recruiter')}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                    selectedAudience === 'recruiter'
-                      ? 'bg-primary text-primary-foreground shadow-sm'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  <div className="flex items-center gap-2">
-                    <Briefcase className="h-4 w-4" />
-                    For Recruiters
-                  </div>
-                </button>
-                <button
-                  onClick={() => setSelectedAudience('both')}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                    selectedAudience === 'both'
-                      ? 'bg-primary text-primary-foreground shadow-sm'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  Both
-                </button>
-                <button
-                  onClick={() => setSelectedAudience('jobseeker')}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                    selectedAudience === 'jobseeker'
-                      ? 'bg-primary text-primary-foreground shadow-sm'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  <div className="flex items-center gap-2">
-                    <GraduationCap className="h-4 w-4" />
-                    For Job Seekers
-                  </div>
-                </button>
-              </div>
-            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+              Master Your Next
+              <span className="text-primary block mt-2">
+                Job Interview
+              </span>
+            </h1>
             
-            {/* Dynamic Hero Content */}
-            {selectedAudience === 'recruiter' && (
-              <>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-                  Revolutionize Your
-                  <span className="text-primary block mt-2">
-                    Hiring Process
-                  </span>
-                </h1>
-                <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
-                  Create AI-powered voice interviews, schedule candidates seamlessly, and get intelligent feedback 
-                  to make better hiring decisions faster than ever before.
-                </p>
-              </>
-            )}
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
+              Practice with AI-powered mock interviews, get instant feedback, and build the confidence 
+              you need to land your dream job. Available 24/7 with personalized coaching.
+            </p>
             
-            {selectedAudience === 'jobseeker' && (
-              <>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-                  Master Every
-                  <span className="text-primary block mt-2">
-                    Interview
-                  </span>
-                </h1>
-                <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
-                  Practice with AI-powered interviews, get real-time feedback, and build confidence 
-                  to land your dream job with personalized coaching.
-                </p>
-              </>
-            )}
-            
-            {selectedAudience === 'both' && (
-              <>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-                  AI-Powered Interview
-                  <span className="text-primary block mt-2">
-                    Excellence
-                  </span>
-                </h1>
-                <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
-                  Whether you're hiring top talent or preparing for your dream job, RoleCall's AI interviews 
-                  help you succeed with intelligent feedback and realistic practice sessions.
-                </p>
-              </>
-            )}
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Link href="/auth">
-                <Button size="lg" className="gap-2 h-12 px-8">
-                  Start Free Trial
+                <Button size="lg" className="gap-2 h-12 px-8 cursor-pointer">
+                  Start Free Practice
                   <ArrowRight className="h-5 w-5" />
                 </Button>
               </Link>
-              {/* <Button variant="outline" size="lg" className="gap-2 h-12 px-8">
-                <Play className="h-5 w-5" />
-                Watch Demo
-              </Button> */}
             </div>
             
-            {/* Core Platform Features */}
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
+            {/* Trust Indicators */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
               <div className="text-center">
                 <div className="text-2xl font-bold text-foreground">AI</div>
                 <div className="text-sm text-muted-foreground">Powered</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-foreground">15-60</div>
-                <div className="text-sm text-muted-foreground">Min Sessions</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-foreground">24/7</div>
                 <div className="text-sm text-muted-foreground">Available</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-foreground">5</div>
+                <div className="text-2xl font-bold text-foreground">5+</div>
                 <div className="text-sm text-muted-foreground">Interview Types</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-foreground">Free</div>
+                <div className="text-sm text-muted-foreground">To Start</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Job Description Feature Highlight - MOVED UP */}
+      <section className="py-20 bg-secondary/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 border border-primary/20 rounded-2xl p-6 sm:p-8 lg:p-12">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              {/* Left Content */}
+              <div className="text-center lg:text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/20 border border-primary/30 rounded-full text-sm font-medium text-primary mb-4">
+                  <Zap className="h-4 w-4" />
+                  Super Easy Setup
+                </div>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 lg:mb-6">
+                  Just Copy & Paste Your Job Description
+                </h2>
+                <p className="text-base sm:text-lg text-muted-foreground mb-6">
+                  Found your dream job? Simply paste the job description or LinkedIn job URL, 
+                  and our AI will automatically create a personalized interview practice session 
+                  tailored to that specific role.
+                </p>
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex items-center gap-3 justify-center lg:justify-start">
+                    <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center shrink-0">
+                      <CheckCircle className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="text-sm sm:text-base text-foreground">Paste any job posting URL or description</span>
+                  </div>
+                  <div className="flex items-center gap-3 justify-center lg:justify-start">
+                    <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center shrink-0">
+                      <CheckCircle className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="text-sm sm:text-base text-foreground">AI extracts key requirements automatically</span>
+                  </div>
+                  <div className="flex items-center gap-3 justify-center lg:justify-start">
+                    <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center shrink-0">
+                      <CheckCircle className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="text-sm sm:text-base text-foreground">Get role-specific interview questions instantly</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Right Content - Demo */}
+              <div className="w-full max-w-md mx-auto lg:max-w-none">
+                <div className="bg-background/50 backdrop-blur-sm border border-border rounded-xl p-4 sm:p-6">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground mb-4">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      Example: LinkedIn Job URL
+                    </div>
+                    
+                    {/* Input Section */}
+                    <div className="bg-background border border-border rounded-lg p-3 sm:p-4">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="p-2 bg-primary/10 rounded-lg">
+                          <BookOpen className="h-4 w-4 text-primary" />
+                        </div>
+                        <div className="text-xs sm:text-sm font-medium text-foreground">Job Description Input</div>
+                      </div>
+                      <div className="bg-secondary/50 rounded-lg p-2 sm:p-3 text-xs sm:text-sm text-muted-foreground font-mono break-all">
+                        https://linkedin.com/jobs/view/senior-software-engineer...
+                      </div>
+                    </div>
+                    
+                    {/* Arrow */}
+                    <div className="flex justify-center py-2">
+                      <div className="rotate-90 lg:rotate-0">
+                        <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6 text-primary animate-pulse" />
+                      </div>
+                    </div>
+                    
+                    {/* Output Section */}
+                    <div className="bg-background border border-border rounded-lg p-3 sm:p-4">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                          <Brain className="h-4 w-4 text-green-600 dark:text-green-400" />
+                        </div>
+                        <div className="text-xs sm:text-sm font-medium text-foreground">AI-Generated Questions</div>
+                      </div>
+                      <div className="space-y-2 text-xs sm:text-sm">
+                        <div className="text-foreground">• "Tell me about your experience with React and Node.js"</div>
+                        <div className="text-foreground">• "How do you approach system design challenges?"</div>
+                        <div className="text-foreground hidden sm:block">• "Describe a time you optimized application performance"</div>
+                        <div className="text-muted-foreground">+ <span className="sm:hidden">6</span><span className="hidden sm:inline">5</span> more personalized questions</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -222,292 +236,222 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              {selectedAudience === 'recruiter' && 'Everything You Need for Smart Hiring'}
-              {selectedAudience === 'jobseeker' && 'Master Your Interview Skills'}
-              {selectedAudience === 'both' && 'Powerful Features for Every Interview Need'}
+              Everything You Need to Ace Interviews
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {selectedAudience === 'recruiter' && 'From AI interviews to detailed analytics, RoleCall streamlines your entire recruitment process'}
-              {selectedAudience === 'jobseeker' && 'Practice with realistic AI interviews and get personalized feedback to ace your next opportunity'}
-              {selectedAudience === 'both' && 'Whether you\'re hiring talent or preparing for interviews, RoleCall has the tools you need to succeed'}
+              Practice with realistic AI interviews designed to help you improve and build confidence
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Core Features - Always Visible */}
             <FeatureCard
               icon={<Bot className="h-8 w-8 text-primary" />}
               title="AI Voice Interviews"
-              description={selectedAudience === 'jobseeker' 
-                ? "Practice with intelligent AI that provides realistic interview conversations and natural dialogue"
-                : "Conduct natural, intelligent interviews with our advanced AI that adapts to each candidate's responses"
-              }
+              description="Practice with intelligent AI that provides realistic interview conversations and natural dialogue flow"
             />
             <FeatureCard
               icon={<MessageSquare className="h-8 w-8 text-primary" />}
-              title="Real-time Feedback"
-              description={selectedAudience === 'jobseeker'
-                ? "Get instant performance insights with detailed scoring on communication, technical skills, and interview presence"
-                : "Instant candidate evaluation with detailed scoring across multiple dimensions"
-              }
+              title="Instant Feedback"
+              description="Get real-time performance insights with detailed scoring on communication skills and interview presence"
+            />
+            <FeatureCard
+              icon={<Target className="h-8 w-8 text-primary" />}
+              title="Custom Practice Sessions"
+              description="Tailored practice for specific roles, companies, and interview types including behavioral and technical"
             />
             <FeatureCard
               icon={<BarChart3 className="h-8 w-8 text-primary" />}
-              title="Intelligent Analytics"
-              description={selectedAudience === 'jobseeker'
-                ? "Track your progress over time and identify areas for improvement with personalized insights"
-                : "Get detailed insights and recommendations to make data-driven hiring decisions"
-              }
+              title="Progress Tracking"
+              description="Monitor your improvement over time with detailed analytics and personalized coaching recommendations"
             />
-            
-            {/* Recruiter-Specific Features */}
-            {(selectedAudience === 'recruiter' || selectedAudience === 'both') && (
-              <>
-                <FeatureCard
-                  icon={<Calendar className="h-8 w-8 text-primary" />}
-                  title="Smart Scheduling"
-                  description="Automated scheduling system that works across time zones with calendar integration"
-                />
-                <FeatureCard
-                  icon={<Zap className="h-8 w-8 text-primary" />}
-                  title="Lightning Fast"
-                  description="Process candidates 10x faster with automated screening and instant results"
-                />
-              </>
-            )}
-            
-            {/* Job Seeker-Specific Features */}
-            {(selectedAudience === 'jobseeker' || selectedAudience === 'both') && (
-              <>
-                <FeatureCard
-                  icon={<Target className="h-8 w-8 text-primary" />}
-                  title="Custom Practice Sessions"
-                  description="Tailored practice for specific roles, companies, and interview types including behavioral and technical"
-                />
-                <FeatureCard
-                  icon={<TrendingUp className="h-8 w-8 text-primary" />}
-                  title="Performance Tracking"
-                  description="Monitor your improvement with detailed analytics and personalized coaching recommendations"
-                />
-              </>
-            )}
-            
-            {/* Common Features */}
-            {selectedAudience === 'both' && (
-              <FeatureCard
-                icon={<Brain className="h-8 w-8 text-primary" />}
-                title="AI-Powered Insights"
-                description="Advanced machine learning provides intelligent feedback and continuous improvement suggestions"
-              />
-            )}
-            
+            <FeatureCard
+              icon={<Clock className="h-8 w-8 text-primary" />}
+              title="Flexible Scheduling"
+              description="Practice anytime, anywhere with sessions ranging from 15 to 60 minutes based on your schedule"
+            />
             <FeatureCard
               icon={<Shield className="h-8 w-8 text-primary" />}
-              title="Enterprise Security"
-              description="Bank-level security with encrypted data and compliance with privacy regulations"
+              title="Safe Practice Environment"
+              description="Build confidence in a judgment-free zone with unlimited practice opportunities"
             />
           </div>
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="py-20">
+      <section className="py-20 bg-secondary/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              How RoleCall Works
+              Start Practicing in 3 Simple Steps
             </h2>
             <p className="text-xl text-muted-foreground">
-              {selectedAudience === 'recruiter' && 'Streamline your hiring process in 3 simple steps'}
-              {selectedAudience === 'jobseeker' && 'Master your interview skills in 3 easy steps'}
-              {selectedAudience === 'both' && 'Get started in minutes with our simple 3-step process'}
+              Get started in minutes and begin improving your interview skills immediately
             </p>
           </div>
           
-          {/* Recruiter Workflow */}
-          {selectedAudience === 'recruiter' && (
-            <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
-              <StepCard
-                step="1"
-                title="Create Interview"
-                description="Set up your AI interview with custom questions tailored to your role requirements"
-                icon={<Bot className="h-6 w-6" />}
-              />
-              <StepCard
-                step="2"
-                title="Share & Schedule"
-                description="Send interview links to candidates and let them schedule at their convenience"
-                icon={<Calendar className="h-6 w-6" />}
-              />
-              <StepCard
-                step="3"
-                title="Review Results"
-                description="Get detailed AI-generated feedback and insights to make informed hiring decisions"
-                icon={<BarChart3 className="h-6 w-6" />}
-              />
-            </div>
-          )}
-          
-          {/* Job Seeker Workflow */}
-          {selectedAudience === 'jobseeker' && (
-            <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
-              <StepCard
-                step="1"
-                title="Choose Practice Type"
-                description="Select from technical, behavioral, or role-specific interview practice sessions"
-                icon={<Target className="h-6 w-6" />}
-              />
-              <StepCard
-                step="2"
-                title="Practice with AI"
-                description="Engage in realistic interview conversations with intelligent AI feedback"
-                icon={<MessageSquare className="h-6 w-6" />}
-              />
-              <StepCard
-                step="3"
-                title="Improve & Repeat"
-                description="Review detailed feedback, track progress, and practice until you're confident"
-                icon={<TrendingUp className="h-6 w-6" />}
-              />
-            </div>
-          )}
-          
-          {/* Both Audiences Workflow */}
-          {selectedAudience === 'both' && (
-            <div className="space-y-12">
-              {/* Recruiter Section */}
-              <div>
-                <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
-                  <div className="flex items-center justify-center gap-2">
-                    <Briefcase className="h-6 w-6 text-primary" />
-                    For Recruiters
-                  </div>
-                </h3>
-                <div className="grid md:grid-cols-3 gap-8">
-                  <StepCard
-                    step="1"
-                    title="Create Interview"
-                    description="Set up AI interviews with custom questions for your roles"
-                    icon={<Bot className="h-5 w-5" />}
-                  />
-                  <StepCard
-                    step="2"
-                    title="Share & Schedule"
-                    description="Send links to candidates for convenient scheduling"
-                    icon={<Calendar className="h-5 w-5" />}
-                  />
-                  <StepCard
-                    step="3"
-                    title="Review Results"
-                    description="Get AI insights to make informed hiring decisions"
-                    icon={<BarChart3 className="h-5 w-5" />}
-                  />
-                </div>
-              </div>
-              
-              {/* Separator */}
-              <div className="flex items-center justify-center">
-                <div className="border-t border-border w-full max-w-xs"></div>
-                <div className="px-4 text-muted-foreground text-sm">or</div>
-                <div className="border-t border-border w-full max-w-xs"></div>
-              </div>
-              
-              {/* Job Seeker Section */}
-              <div>
-                <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
-                  <div className="flex items-center justify-center gap-2">
-                    <GraduationCap className="h-6 w-6 text-primary" />
-                    For Job Seekers
-                  </div>
-                </h3>
-                <div className="grid md:grid-cols-3 gap-8">
-                  <StepCard
-                    step="1"
-                    title="Choose Practice"
-                    description="Select interview type and difficulty level"
-                    icon={<Target className="h-5 w-5" />}
-                  />
-                  <StepCard
-                    step="2"
-                    title="Practice with AI"
-                    description="Engage in realistic interview conversations"
-                    icon={<MessageSquare className="h-5 w-5" />}
-                  />
-                  <StepCard
-                    step="3"
-                    title="Improve Skills"
-                    description="Get feedback and track your progress over time"
-                    icon={<TrendingUp className="h-5 w-5" />}
-                  />
-                </div>
-              </div>
-            </div>
-          )}
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+            <StepCard
+              step="1"
+              title="Paste Job Description"
+              description="Simply copy and paste a job posting URL or description text - our AI handles the rest automatically"
+              icon={<BookOpen className="h-6 w-6" />}
+            />
+            <StepCard
+              step="2"
+              title="Practice with AI"
+              description="Engage in realistic interview conversations with our intelligent AI that adapts to your responses"
+              icon={<Mic className="h-6 w-6" />}
+            />
+            <StepCard
+              step="3"
+              title="Review & Improve"
+              description="Get detailed feedback, track your progress, and practice until you feel confident and prepared"
+              icon={<TrendingUp className="h-6 w-6" />}
+            />
+          </div>
         </div>
       </section>
 
-      {/* Key Benefits */}
+      {/* Interview Types */}
       <section className="py-20 bg-secondary/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-            {selectedAudience === 'recruiter' && 'Built for Modern Recruitment'}
-            {selectedAudience === 'jobseeker' && 'Your Interview Practice Partner'}
-            {selectedAudience === 'both' && 'Designed for Interview Excellence'}
-          </h2>
-          <p className="text-muted-foreground mb-12 max-w-2xl mx-auto">
-            {selectedAudience === 'recruiter' && 'RoleCall provides AI-powered interview tools designed to streamline your recruitment workflow'}
-            {selectedAudience === 'jobseeker' && 'Practice with AI-driven interviews that help you prepare for real-world scenarios'}
-            {selectedAudience === 'both' && 'Whether you\'re conducting interviews or preparing for them, RoleCall provides the tools you need'}
-          </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              Practice Every Type of Interview
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Comprehensive preparation for all interview scenarios you might encounter
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <InterviewTypeCard
+              title="Behavioral Interviews"
+              description="Master the STAR method and common behavioral questions"
+              icon={<Users className="h-6 w-6 text-primary" />}
+            />
+            <InterviewTypeCard
+              title="Technical Interviews"
+              description="Practice coding challenges and technical problem-solving"
+              icon={<Brain className="h-6 w-6 text-primary" />}
+            />
+            <InterviewTypeCard
+              title="Case Study Interviews"
+              description="Work through business cases and analytical problems"
+              icon={<BarChart3 className="h-6 w-6 text-primary" />}
+            />
+            <InterviewTypeCard
+              title="Leadership Interviews"
+              description="Demonstrate management and leadership capabilities"
+              icon={<Award className="h-6 w-6 text-primary" />}
+            />
+            <InterviewTypeCard
+              title="Phone & Video Interviews"
+              description="Practice remote interview skills and virtual presence"
+              icon={<MessageSquare className="h-6 w-6 text-primary" />}
+            />
+            <InterviewTypeCard
+              title="Industry-Specific"
+              description="Tailored questions for your specific field or role"
+              icon={<Target className="h-6 w-6 text-primary" />}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+                Why Choose RoleCall for Interview Practice?
+              </h2>
+              <div className="space-y-6">
+                <BenefitItem
+                  icon={<Zap className="h-5 w-5 text-primary" />}
+                  title="Instant Results"
+                  description="Get immediate feedback after each practice session with actionable insights"
+                />
+                <BenefitItem
+                  icon={<Trophy className="h-5 w-5 text-primary" />}
+                  title="Proven Success"
+                  description="Join thousands who have improved their interview performance and landed jobs"
+                />
+                <BenefitItem
+                  icon={<BookOpen className="h-5 w-5 text-primary" />}
+                  title="Continuous Learning"
+                  description="Access to updated interview questions and industry-specific scenarios"
+                />
+                <BenefitItem
+                  icon={<Shield className="h-5 w-5 text-primary" />}
+                  title="Private & Secure"
+                  description="Practice in complete privacy with enterprise-grade security and data protection"
+                />
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-primary/10 to-secondary/20 rounded-2xl p-8">
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-6">
+                  <GraduationCap className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  Ready to Get Started?
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  Join thousands of job seekers who have improved their interview skills with RoleCall
+                </p>
+                <Link href="/auth">
+                  <Button className="gap-2 cursor-pointer">
+                    Start Free Practice
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
+      <section className="py-20 bg-secondary/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 border border-primary/20 rounded-2xl p-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              {selectedAudience === 'recruiter' && 'Ready to Transform Your Hiring?'}
-              {selectedAudience === 'jobseeker' && 'Ready to Ace Your Next Interview?'}
-              {selectedAudience === 'both' && 'Ready to Transform Your Interview Experience?'}
+              Ready to Ace Your Next Interview?
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              {selectedAudience === 'recruiter' && 'Start using RoleCall to streamline your interview process with AI-powered tools.'}
-              {selectedAudience === 'jobseeker' && 'Begin practicing with RoleCall to improve your interview skills and build confidence.'}
-              {selectedAudience === 'both' && 'Whether you\'re hiring talent or preparing for interviews, RoleCall provides the tools you need.'}
+              Start practicing today and build the confidence you need to land your dream job.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <Link href="/auth">
-                <Button size="lg" className="gap-2 h-12 px-8">
-                  {selectedAudience === 'jobseeker' ? 'Start Practicing Free' : 'Start Free Trial'}
+                <Button size="lg" className="gap-2 h-12 px-8 cursor-pointer">
+                  Start Free Practice
                   <ArrowRight className="h-5 w-5" />
                 </Button>
               </Link>
-              <Button variant="outline" size="lg" className="h-12 px-8">
-                {selectedAudience === 'jobseeker' ? 'View Pricing' : 'Contact Us'}
-              </Button>
+              
             </div>
             
-            <p className="text-sm text-muted-foreground mt-6">
-              {selectedAudience === 'recruiter' && 'No credit card required • 14-day free trial • Cancel anytime'}
-              {selectedAudience === 'jobseeker' && 'No credit card required • Start with free practice credits • Upgrade anytime'}
-              {selectedAudience === 'both' && 'No credit card required • Free trial available • Cancel anytime'}
+            <p className="text-sm text-muted-foreground">
+              No credit card required • Start with free practice credits • Upgrade anytime
             </p>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-secondary/30 py-12">
+      <footer className="border-t border-border bg-background py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center gap-3 mb-4 md:mb-0">
-              <div className="p-2 bg-background border border-border rounded-lg">
+              <div className="p-2 bg-secondary border border-border rounded-lg">
                 <Image
                   src={logo}
                   alt="RoleCall Logo"
@@ -518,7 +462,7 @@ export default function Home() {
               </div>
               <div>
                 <div className="font-semibold text-foreground">RoleCall</div>
-                <div className="text-sm text-muted-foreground">AI-Powered Interviews</div>
+                <div className="text-sm text-muted-foreground">Your Interview Practice Partner</div>
               </div>
             </div>
             
@@ -555,13 +499,7 @@ function StepCard({ step, title, description, icon }) {
   return (
     <div className="text-center">
       <div className="inline-flex items-center justify-center w-12 h-12 bg-primary text-primary-foreground rounded-full text-xl font-bold mb-4">
-        {icon ? (
-          <div className="flex items-center justify-center">
-            {icon}
-          </div>
-        ) : (
-          step
-        )}
+        {icon}
       </div>
       <h3 className="text-xl font-semibold text-foreground mb-3">{title}</h3>
       <p className="text-muted-foreground leading-relaxed">{description}</p>
@@ -569,28 +507,35 @@ function StepCard({ step, title, description, icon }) {
   );
 }
 
-function TestimonialCard({ quote, author, role, metric }) {
+function InterviewTypeCard({ title, description, icon }) {
   return (
-    <div className="bg-background border border-border rounded-xl p-6 text-left hover:shadow-lg transition-all duration-200">
-      <div className="flex items-start gap-3 mb-4">
-        <div className="p-2 bg-primary/10 rounded-lg shrink-0">
-          <Star className="h-5 w-5 text-primary fill-current" />
+    <div className="bg-background border border-border rounded-lg p-6 hover:shadow-md transition-all duration-200 group">
+      <div className="flex items-start gap-4">
+        <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/15 transition-colors">
+          {icon}
         </div>
         <div className="flex-1">
-          <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-            "{quote}"
+          <h3 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+            {title}
+          </h3>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {description}
           </p>
-          <div className="space-y-1">
-            <p className="font-semibold text-foreground text-sm">{author}</p>
-            <p className="text-xs text-muted-foreground">{role}</p>
-            {metric && (
-              <div className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium mt-2">
-                <CheckCircle className="h-3 w-3" />
-                {metric}
-              </div>
-            )}
-          </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function BenefitItem({ icon, title, description }) {
+  return (
+    <div className="flex items-start gap-4">
+      <div className="p-2 bg-primary/10 rounded-lg shrink-0">
+        {icon}
+      </div>
+      <div>
+        <h4 className="font-semibold text-foreground mb-1">{title}</h4>
+        <p className="text-muted-foreground text-sm">{description}</p>
       </div>
     </div>
   );
@@ -616,7 +561,7 @@ function LoadingScreen() {
         {/* Loading Text */}
         <div className="space-y-2">
           <h2 className="text-xl font-semibold text-foreground">Loading RoleCall</h2>
-          <p className="text-muted-foreground">Setting up your experience...</p>
+          <p className="text-muted-foreground">Setting up your interview practice...</p>
         </div>
         
         {/* Loading Skeletons */}
